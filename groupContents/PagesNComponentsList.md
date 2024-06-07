@@ -5,7 +5,7 @@
 | --- | ------------------------ | ----------- | ------ |
 | 1   | Login Page               | Saurabh     |        |
 | 2   | Register Page (User)     | Saurabh     |        |
-| 3   | Edit Profile (User)      |             |        |
+| 3   | Edit Profile (User)      |   Pritesh   |        |
 | 4   | Dash Board (User)        |             |        |
 | 5   | Home Page                |             |        |
 | 6   | Contact Us               | Gaurav      |        |
@@ -19,6 +19,6 @@
 ## Components
 | No  | Component Name     | Assigned To | Status |
 | --- | ------------------ | ----------- | ------ |
-| 1   | Header             |             |        |
-| 2   | Footer             |             |        |
+| 1   | Header / Navbar    |    Gaurav   |        |
+| 2   | Footer             |    Gaurav   |        |
 | 3   | Property Thumbnail |             |        |
