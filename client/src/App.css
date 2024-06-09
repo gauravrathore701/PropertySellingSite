@@ -1,10 +1,33 @@
-.contactUsForm{
-  box-shadow: 10px 10px 35px 5px rgba(0,0,0,0.4);
--webkit-box-shadow: 10px 10px 35px 5px rgba(0,0,0,0.4);
--moz-box-shadow: 10px 10px 35px 5px rgba(0,0,0,0.4);
-  background-color: whitesmoke;
+/* Common Utilities */
+a{
+  text-decoration: none;
+  color: inherit;
 }
 
 .centered{
   text-align: center;
+}
+
+.formContainer {
+  box-shadow: 10px 10px 35px 5px rgba(0,0,0,0.4);
+  -webkit-box-shadow: 10px 10px 35px 5px rgba(0,0,0,0.4);
+  -moz-box-shadow: 10px 10px 35px 5px rgba(0,0,0,0.4);
+  background-color: whitesmoke;
+}
+
+/* Contact Us Form Designs */
+.contactUsForm {
+  background-color: whitesmoke; /* Does Nothing just there to fill the class */
+}
+
+/* Footer Designs */
+.footer{
+  z-index: 1;
+  position: relative;
+  top: 5vh;
+  padding-bottom: 10px;
+  background-color: black;
+  color: white;
+  font-weight: 600;
+  font-size: large;
 }
