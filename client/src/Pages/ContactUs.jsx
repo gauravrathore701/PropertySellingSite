@@ -4,7 +4,7 @@ function ContactUs(){
 
         <div className="col"></div>
 
-        <div className="container contactUsForm col-lg-6 col-md-12 px-4">
+        <div className="container formContainer contactUsForm col-lg-6 col-md-12 px-4">
             
             <h1 className="centered mb-5 mt-3">Contact Us</h1>
             <div className="form-label">Name:</div>

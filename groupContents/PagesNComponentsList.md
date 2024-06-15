@@ -1,6 +1,6 @@
 # List
-
 ## Pages
+
 | No  | Page Name                | Assigned To | Status |
 | --- | ------------------------ | ----------- | ------ |
 | 1   | Login Page               | Saurabh     |        |
@@ -17,8 +17,9 @@
 | 12  | Checkout Page            |             |        |
 
 ## Components
+
 | No  | Component Name     | Assigned To | Status |
 | --- | ------------------ | ----------- | ------ |
-| 1   | Header / Navbar    |    Gaurav   |        |
-| 2   | Footer             |    Gaurav   |        |
-| 3   | Property Thumbnail |             |        |
+| 1   | Header             | Gaurav      |        |
+| 2   | Footer             | Gaurav      |        |
+| 3   | Property Thumbnail | Chandan     |        |
