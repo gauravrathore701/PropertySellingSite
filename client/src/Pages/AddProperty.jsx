@@ -1,96 +1,145 @@
+import { useState } from "react"
+import { Navigate, useNavigate } from "react-router-dom"
+import { toast } from "react-toastify"
+
+
 function AddProperty() {
+    const [title, setTitle] = useState("")
+    const [Descpt, setDescpt] = useState("")
+    const [Address, setAddress] = useState("")
+    const [State, setState] = useState("")
+    const [District, setDistrict] = useState("")
+    const [City, setCity] = useState("")
+    const [Pincode, setPincode] = useState("")
+    const [Type, setType] = useState("")
+    const [Area, setArea] = useState("")
+    const [Bedroom, setBedroom] = useState("")
+    const [Bathroom, setBathroom] = useState("")
+    const [Price, setPrice] = useState("")
+
+    const addProp = async () => {
+        if (title.length === 0) {
+            toast.warning("Please Enter Property Title")
+        }
+        else if (Descpt.length === 0) {
+            toast.warning("Please Enter Property Description")
+        } else if (Address.length === 0) {
+            toast.warning("Please Enter Property Address")
+        }else if (Descpt.length === 0) {
+            toast.warning("Please Enter Property Description")
+        } else if (State.length === 0) {
+            toast.warning("Please Enter Property State")
+        }else if (District.length === 0) {
+            toast.warning("Please Enter Property District")
+        } else if (City.length === 0) {
+            toast.warning("Please Enter Property City")
+        }else if (Pincode.length === 0) {
+            toast.warning("Please Enter Property Pincode")
+        } else if (Area.length === 0) {
+            toast.warning("Please Enter Property Area")
+        } else if (Type.length === 0) {
+            toast.warning("Please Enter Property Type")
+        } else if (Bedroom.length === 0) {
+            toast.warning("Please Enter Property Bedrooms")
+        } else if (Bathroom.length === 0) {
+            toast.warning("Please Enter Property Bathrooms")
+        } else if (Price.length === 0) {
+            toast.warning("Please Enter Property Price")
+        }
+        else {
+            toast.success("Data Added Successfully")
+        }
+    }
     return (
         <div className="row">
-
             <div className="col md-4"></div>
 
             <div className="container contactUsForm col-lg-6 col-md-12 px-4 mt-3 ">
-                <form action="" method="post">
-                    <h1 className="centered mb-5 mt-5">Add Property</h1>
-                    <div className="form-label">Property Title: </div>
-                    <div><input type="text" placeholder="Property Title" className="form-control mb-5" /></div>
-                    <div className="form-label ">Property Description:</div>
-                    <textarea type="text" placeholder="Property Description" className="form-control" rows={5} />
-                    <div className="form-label mt-5">Address: </div>
-                    <div><textarea type="text" placeholder="Enter Address" className="form-control mb-3" /></div>
-                    <div class="container mt-5">
-                        <div class="row mt-5">
-                            <div class="col me-5">
-                                <div className="form-label">Property State: </div>
-                                <select class="form-select" aria-label="Select State">
-                                    <option selected>Select State</option>
-                                    <option value="Maharastra">Maharastra</option>
-                                    <option value="Goa">Goa</option>
-                                    <option value="Karnataka">Karnataka</option>
-                                </select>
-                            </div>
-                            <div class="col me-3">
-                                <div className="form-label">Property City: </div>
-                                <select class="form-select" aria-label="Select District">
-                                    <option selected>Select District</option>
-                                    <option value="Pune">Pune</option>
-                                    <option value="North-Goa">North-Goa</option>
-                                    <option value="Belgaum">Belgaum</option>
-                                </select>
-                            </div>
+                {/* <form action="/" method="post"> */}
+                <h1 className="centered mb-5 mt-5">Add Property</h1>
+                <div className="form-label">Property Title: </div>
+                <div><input type="text" placeholder="Property Title" name="PropName" onChange={(e) => { setTitle(e.target.value) }} className="form-control mb-5" /></div>
+                <div className="form-label ">Property Description:</div>
+                <textarea type="text" placeholder="Property Description" name="PropDescript" onChange={(e) => { setDescpt(e.target.value) }} className="form-control" rows={5} />
+                <div className="form-label mt-5">Address: </div>
+                <div><textarea type="text" placeholder="Enter Address" name="Address" onChange={(e) => { setAddress(e.target.value) }} className="form-control mb-3" /></div>
+                <div class="container mt-5">
+                    <div class="row mt-5">
+                        <div class="col me-5">
+                            <div className="form-label">Property State: </div>
+                            <select class="form-select" aria-label="Select State" name="State" onChange={(e) => { setState(e.target.value) }}>
+                                <option selected>Select State</option>
+                                <option value="Maharastra">Maharastra</option>
+                                <option value="Goa">Goa</option>
+                                <option value="Karnataka">Karnataka</option>
+                            </select>
                         </div>
-                        <div class="row mt-5">
-                            <div class="col me-5">
-                                <div className="form-label">Property City: </div>
-                                <input type="text" placeholder="Select City" className="form-control" />
-                            </div>
-                            <div class="col me-3">
-                                <div className="form-label">Property Pincode: </div>
-                                <input type="text" placeholder="Enter Pincode" className="form-control" />
-                            </div>
+                        <div class="col me-3">
+                            <div className="form-label">Property District: </div>
+                            <select class="form-select" name="District" aria-label="Select District" onChange={(e) => { setDistrict(e.target.value) }}>
+                                <option selected>Select District</option>
+                                <option value="Pune">Pune</option>
+                                <option value="North-Goa">North-Goa</option>
+                                <option value="Belgaum">Belgaum</option>
+                            </select>
                         </div>
-                        <div class="row mt-5">
-                            <div class="col me-5">
-                                <div className="form-label">Property Type: </div>
-                                <select class="form-select" aria-label="Select Type">
-                                    <option selected>Select Type</option>
-                                    <option value="Bunglow">Bunglow</option>
-                                    <option value="Apartment">Apartment</option>
-                                    <option value="Villa">Villa</option>
-                                </select>
-                            </div>
-                            <div class="col me-3">
-                                <div className="form-label">Property Area: </div>
-                                <input type="text" placeholder="Enter Area" className="form-control mb-5" />
-                            </div>
+                    </div>
+                    <div class="row mt-5">
+                        <div class="col me-5">
+                            <div className="form-label">Property City: </div>
+                            <input type="text" placeholder="Select City" name="City" onChange={(e) => { setCity(e.target.value) }} className="form-control" />
                         </div>
-                        <div class="row">
-                            <div class="col me-5">
-                                <div className="form-label">Property Bedrooms: </div>
-                                <input type="text" placeholder="Enter Number of Bedrooms" className="form-control mb-5" />
-                            </div>
-                            <div class="col me-3">
-                                <div className="form-label">Property Bathrooms: </div>
-                                <input type="text" placeholder="Enter Number of Bathrooms" className="form-control mb-5" />
-                            </div>
+                        <div class="col me-3">
+                            <div className="form-label">Property Pincode: </div>
+                            <input type="number" placeholder="Enter Pincode" name="Pincode" onChange={(e) => { setPincode(e.target.value) }} className="form-control" />
                         </div>
-                        <div class="row">
-                            <div class="col me-5">
-                                <div className="form-label">Property Price: </div>
-                                <input type="text" placeholder="Enter Price" className="form-control mb-5" />
-                            </div>
-                            <div class="col me-3">
-                                <div className="form-label">Property Images: </div>
-                                <input class="form-control" type="file" id="formFileMultiple" multiple />
-                            </div>
+                    </div>
+                    <div class="row mt-5">
+                        <div class="col me-5">
+                            <div className="form-label">Property Type: </div>
+                            <select class="form-select" aria-label="Select Type" name="PropType" onChange={(e) => { setType(e.target.value) }}>
+                                <option selected>Select Type</option>
+                                <option value="Bunglow">Bunglow</option>
+                                <option value="Apartment">Apartment</option>
+                                <option value="Villa">Villa</option>
+                            </select>
                         </div>
-                        <div className="row justify-content-center mb-3">
-                            <input type="Submit" className="btn btn-success col-2" placeholder="Add Property" />
+                        <div class="col me-3">
+                            <div className="form-label">Property Area: </div>
+                            <input type="number" placeholder="Enter Area" name="Area" onChange={(e) => { setArea(e.target.value) }} className="form-control mb-5" />
                         </div>
-
+                    </div>
+                    <div class="row">
+                        <div class="col me-5">
+                            <div className="form-label">Property Bedrooms: </div>
+                            <input type="number" placeholder="Enter Number of Bedrooms" name="Bedrooms" onChange={(e) => { setBedroom(e.target.value) }} className="form-control mb-5" />
+                        </div>
+                        <div class="col me-3">
+                            <div className="form-label">Property Bathrooms: </div>
+                            <input type="number" placeholder="Enter Number of Bathrooms" onChange={(e) => { setBathroom(e.target.value) }} name="Bathroom" className="form-control mb-5" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col me-5">
+                            <div className="form-label">Property Price: </div>
+                            <input type="text" placeholder="Enter Price" name="Price" onChange={(e) => { setPrice(e.target.value) }} className="form-control mb-5" />
+                        </div>
+                        <div class="col me-3">
+                            <div className="form-label">Property Images: </div>
+                            <input class="form-control" type="file" name="Images" id="formFileMultiple" multiple />
+                        </div>
+                    </div>
+                    <div className="row justify-content-center mb-3">
+                        <input type="Submit" className="btn btn-success col-2" onClick={addProp} placeholder="Add Property" />
                     </div>
 
-                </form>
+                </div>
+
+                {/* </form> */}
             </div >
 
             <div className="col md-4"></div>
         </div >
     )
 }
-
 export default AddProperty;
