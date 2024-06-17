@@ -1,11 +1,28 @@
 import { useState } from "react";
-import Footer from '../Components/Footer'
+import { TbEye } from "react-icons/tb";
+import { GoEyeClosed } from "react-icons/go"
+import Footer from "../Components/Footer";
 
 
 function LoginPage() {
 //   // create state members
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  // const [email, setEmail] = useState("");
+  const [showPassword, setShowPassword] = useState("");
+  const[data,setData] = useState({
+    email : "",
+    password : ""
+})
+
+const handleOnChange = (e) =>{
+  const {name,value} = e.target
+
+    setData((prev)=>{
+      return{
+        ...prev,
+        [name] : value
+      }
+    })
+}
 
   // get the navigate object
   // const navigate = useNavigate()
@@ -44,51 +61,50 @@ function LoginPage() {
 
   return (
     <div>
-      <div className="container">
-      <center>
-        <h2 className="page-title mt-4">Login here</h2>
-      </center>
-      <div className="row mt-4">
-        <div className="col-3"></div>
-
-        <div className="col">
-          <div className="form">
-            <div className="mb-3">
-              <label htmlFor="">Email</label>
-              <input
-                onChange={(e) => {
-                  setEmail(e.target.value);
-                }}
-                type="email"
-                className="form-control"
-              />
-            </div>
-            <div className="mb-3">
-              <label htmlFor="">Password</label>
-              <input
-                onChange={(e) => {
-                  setPassword(e.target.value);
-                }}
-                type="password"
-                className="form-control"
-              />
-            </div>
-            <div className="mb-3">
-              <div>
-                Dont have an account yet?{" "}
-                {/* <Link to='/register'>Register here</Link> */}
-              </div>
-              <button className="mt-2 btn btn-success">Login</button>
-            </div>
+         <div className="container formContainer loginForm col-lg-6 col-md-12 px-4">
+    
+    <h2 className="centered mb-5 mt-6">Login here</h2>
+    <div className="form-label">Email</div>
+    <input onChange={handleOnChange}
+            type="email"
+            name="email"
+            value={data.email}
+            placeholder="Enter Your Email"
+            className="form-control" />
+    
+    <div className="form-label">Password</div>
+    <input
+            type={showPassword ? "text" : "password"}
+            placeholder="Enter Your password"
+            name="password"
+            value={data.password}
+            onChange={handleOnChange}
+            className="form-control"
+            style={{ paddingRight: '2rem' }}
+          />
+          <div
+            onClick={() => setShowPassword((prev) => !prev)}
+            style={{
+              position: 'absolute',
+              right: '27%',
+              top: '22%',
+              transform: 'translateY(-50%)',
+              cursor: 'pointer'
+            }}
+          >
+            <span style={{ fontSize: '1.7rem' }}>
+              {showPassword ? <TbEye /> : <GoEyeClosed />}
+            </span>
           </div>
-        </div>
-
-        <div className="col-3"></div>
-      </div>
+          <div>
+            Don't have an account yet?{" "}
+            {/* <Link to='/register'>Register here</Link> */}
+          </div>
+          <button className="mt-2 btn btn-success">Login</button>
+</div>
+            <Footer/>
     </div>
-
-    <Footer />
-    </div>
+   
   );
 }
 
