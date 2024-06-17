@@ -1,13 +1,14 @@
 /* Common Utilities */
-.centered{
+.centered {
   text-align: center;
 }
 
 .formContainer {
-  box-shadow: 10px 10px 35px 5px rgba(0,0,0,0.4);
-  -webkit-box-shadow: 10px 10px 35px 5px rgba(0,0,0,0.4);
-  -moz-box-shadow: 10px 10px 35px 5px rgba(0,0,0,0.4);
+  box-shadow: 10px 10px 35px 5px rgba(0, 0, 0, 0.4);
+  -webkit-box-shadow: 10px 10px 35px 5px rgba(0, 0, 0, 0.4);
+  -moz-box-shadow: 10px 10px 35px 5px rgba(0, 0, 0, 0.4);
   background-color: whitesmoke;
+  min-height: 80vh;
 }
 
 /* Contact Us Form Designs */
@@ -16,11 +17,9 @@
 }
 
 /* Footer Designs */
-.footer{
-  z-index: 1;
+.footer {
   position: relative;
-  top: 5vh;
-  padding-bottom: 10px;
+  margin-top: 20px;
   background-color: black;
   color: white;
   font-weight: 600;
@@ -28,13 +27,14 @@
 }
 
 /* Removing Pre Styles */
-a{
+a {
   text-decoration: none;
   color: inherit;
 }
 
-body{
+body {
   margin: 0;
   padding: 0;
+  height: 100%;
   overflow-x: hidden;
 }
