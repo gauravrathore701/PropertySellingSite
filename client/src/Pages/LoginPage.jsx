@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Footer from '../Components/Footer'
 
 
 function LoginPage() {
@@ -42,7 +43,8 @@ function LoginPage() {
   //   }
 
   return (
-    <div className="container">
+    <div>
+      <div className="container">
       <center>
         <h2 className="page-title mt-4">Login here</h2>
       </center>
@@ -83,6 +85,9 @@ function LoginPage() {
 
         <div className="col-3"></div>
       </div>
+    </div>
+
+    <Footer />
     </div>
   );
 }
