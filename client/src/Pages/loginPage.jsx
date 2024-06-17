@@ -77,9 +77,10 @@ function LoginUser() {
             <div className="mb-3">
               <div>
                 Dont have an account yet?{" "}
-                {/* <Link to='/register'>Register here</Link> */}
+                <Link to='/register'>Register here</Link>
               </div>
-              <button className="mt-3 ms-3 text-2xl btn btn-success">Login</button>
+              <button className="mt-3 ms-3 text-2xl btn btn-success">Login</button>{" "}
+              <button className="mt-3 ms-3 text-2xl btn btn btn-warning"><a href="/add">Add Property</a></button> 
             </div>
           </div>
         </div>

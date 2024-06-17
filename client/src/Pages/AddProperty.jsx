@@ -1,6 +1,7 @@
 import { useState } from "react"
-import { Navigate, useNavigate } from "react-router-dom"
+import { Link, Navigate, useNavigate } from "react-router-dom"
 import { toast } from "react-toastify"
+import { addProperty } from "../services/property"
 
 
 function AddProperty() {
@@ -47,12 +48,24 @@ function AddProperty() {
             toast.warning("Please Enter Property Price")
         }
         else {
-            toast.success("Data Added Successfully")
+            const id = 1
+            const result = await addProperty(title,Address,City,State,District,Pincode,Type,Price,Area,Bedroom,Bathroom,Descpt,1)
+            if (result['Status'] === 'success') {
+                if (result['data'].length != 0) {
+                    toast.success(`Property Added`)
+                }
+                else {
+                    toast.warning(`Property not Added`)
+                }
+            }
+            else {
+                toast.warning(`Property not Added`)
+            }
         }
     }
     return (
         <div className="row">
-            <div className="col md-4"></div>
+            <div className="col md-4"><Link to='/editprop'>Edit Property</Link></div>
 
             <div className="container contactUsForm col-lg-6 col-md-12 px-4 mt-3 ">
                 {/* <form action="/" method="post"> */}
@@ -63,76 +76,75 @@ function AddProperty() {
                 <textarea type="text" placeholder="Property Description" name="PropDescript" onChange={(e) => { setDescpt(e.target.value) }} className="form-control" rows={5} />
                 <div className="form-label mt-5">Address: </div>
                 <div><textarea type="text" placeholder="Enter Address" name="Address" onChange={(e) => { setAddress(e.target.value) }} className="form-control mb-3" /></div>
-                <div class="container mt-5">
-                    <div class="row mt-5">
-                        <div class="col me-5">
+                <div className="container mt-5">
+                    <div className="row mt-5">
+                        <div className="col me-5">
                             <div className="form-label">Property State: </div>
-                            <select class="form-select" aria-label="Select State" name="State" onChange={(e) => { setState(e.target.value) }}>
-                                <option selected>Select State</option>
+                            <select className="form-select" aria-label="Select State" name="State"  defaultValue={"default"}  onChange={(e) => { setState(e.target.value) }}>
+                                <option value="default">Select State</option>
                                 <option value="Maharastra">Maharastra</option>
                                 <option value="Goa">Goa</option>
                                 <option value="Karnataka">Karnataka</option>
                             </select>
                         </div>
-                        <div class="col me-3">
+                        <div className="col me-3">
                             <div className="form-label">Property District: </div>
-                            <select class="form-select" name="District" aria-label="Select District" onChange={(e) => { setDistrict(e.target.value) }}>
-                                <option selected>Select District</option>
+                            <select className="form-select" name="District" aria-label="Select District" defaultValue={"default"} onChange={(e) => { setDistrict(e.target.value) }}>
+                                <option value="default">Select District</option>
                                 <option value="Pune">Pune</option>
                                 <option value="North-Goa">North-Goa</option>
                                 <option value="Belgaum">Belgaum</option>
                             </select>
                         </div>
                     </div>
-                    <div class="row mt-5">
-                        <div class="col me-5">
+                    <div className="row mt-5">
+                        <div className="col me-5">
                             <div className="form-label">Property City: </div>
                             <input type="text" placeholder="Select City" name="City" onChange={(e) => { setCity(e.target.value) }} className="form-control" />
                         </div>
-                        <div class="col me-3">
+                        <div className="col me-3">
                             <div className="form-label">Property Pincode: </div>
                             <input type="number" placeholder="Enter Pincode" name="Pincode" onChange={(e) => { setPincode(e.target.value) }} className="form-control" />
                         </div>
                     </div>
-                    <div class="row mt-5">
-                        <div class="col me-5">
+                    <div className="row mt-5">
+                        <div className="col me-5">
                             <div className="form-label">Property Type: </div>
-                            <select class="form-select" aria-label="Select Type" name="PropType" onChange={(e) => { setType(e.target.value) }}>
-                                <option selected>Select Type</option>
+                            <select className="form-select" aria-label="Select Type" defaultValue={"default"} name="PropType" onChange={(e) => { setType(e.target.value) }}>
+                                <option value="default">Select Type</option>
                                 <option value="Bunglow">Bunglow</option>
                                 <option value="Apartment">Apartment</option>
                                 <option value="Villa">Villa</option>
                             </select>
                         </div>
-                        <div class="col me-3">
+                        <div className="col me-3">
                             <div className="form-label">Property Area: </div>
                             <input type="number" placeholder="Enter Area" name="Area" onChange={(e) => { setArea(e.target.value) }} className="form-control mb-5" />
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col me-5">
+                    <div className="row">
+                        <div className="col me-5">
                             <div className="form-label">Property Bedrooms: </div>
                             <input type="number" placeholder="Enter Number of Bedrooms" name="Bedrooms" onChange={(e) => { setBedroom(e.target.value) }} className="form-control mb-5" />
                         </div>
-                        <div class="col me-3">
+                        <div className="col me-3">
                             <div className="form-label">Property Bathrooms: </div>
                             <input type="number" placeholder="Enter Number of Bathrooms" onChange={(e) => { setBathroom(e.target.value) }} name="Bathroom" className="form-control mb-5" />
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col me-5">
+                    <div className="row">
+                        <div className="col me-5">
                             <div className="form-label">Property Price: </div>
                             <input type="text" placeholder="Enter Price" name="Price" onChange={(e) => { setPrice(e.target.value) }} className="form-control mb-5" />
                         </div>
-                        <div class="col me-3">
+                        <div className="col me-3">
                             <div className="form-label">Property Images: </div>
-                            <input class="form-control" type="file" name="Images" id="formFileMultiple" multiple />
+                            <input className="form-control" type="file" name="Images" id="formFileMultiple" multiple />
                         </div>
                     </div>
                     <div className="row justify-content-center mb-3">
                         <input type="Submit" className="btn btn-success col-2" onClick={addProp} placeholder="Add Property" />
                     </div>
-
                 </div>
 
                 {/* </form> */}
