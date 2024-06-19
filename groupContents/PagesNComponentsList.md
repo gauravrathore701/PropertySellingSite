@@ -14,13 +14,13 @@
 | 8   | Edit Property            | Pritesh     | Done   |
 | 9   | Individual Property Page |             |        |
 | 10  | My Properties Page       |             |        |
-| 11  | Wish List                |             |        |
+| 11  | Wish List                | Gaurav      | Done   |
 | 12  | Checkout Page            |             |        |
 
 ## Components
 
-| No  | Component Name     | Assigned To | Status |
-| --- | ------------------ | ----------- | ------ |
-| 1   | Header             | Gaurav      |        |
-| 2   | Footer             | Gaurav      |        |
-| 3   | Property Thumbnail | Gaurav      | Done   |
+| No  | Component Name | Assigned To | Status |
+| --- | -------------- | ----------- | ------ |
+| 1   | Header         | Gaurav      |        |
+| 2   | Footer         | Gaurav      | W.I.P  |
+| 3   | Property Card  | Gaurav      | Done   |

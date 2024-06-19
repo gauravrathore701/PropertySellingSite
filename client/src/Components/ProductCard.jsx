@@ -1,4 +1,14 @@
-function ProductCard() {
+function ProductCard({ page = { name: "default" } }) {
+  function addToCartBtn() {
+    if (page.name !== "wishlist") {
+      return (
+        <a href="#" class="btn btn-warning card-link">
+          Add to Cart
+        </a>
+      );
+    }
+  }
+
   return (
     <div>
       <div class="card" style={{ width: "20rem", borderRadius: "20px" }}>
@@ -39,9 +49,8 @@ function ProductCard() {
           <a href="" class="btn btn-success card-link">
             Buy
           </a>
-          <a href="" class="btn btn-warning card-link">
-            Add to Cart
-          </a>
+
+          {addToCartBtn()}
         </div>
       </div>
     </div>
