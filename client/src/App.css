@@ -16,6 +16,13 @@
   background-color: whitesmoke; /* Does Nothing just there to fill the class */
 }
 
+/* Product Card Designs */
+.product-container {
+  width: 200px;
+  border: 1px solid red;
+  display: flex;
+}
+
 /* Footer Designs */
 .footer {
   position: relative;
