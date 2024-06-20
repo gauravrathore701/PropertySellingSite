@@ -1,4 +1,3 @@
-import Footer from "../Components/Footer";
 
 function ContactUs() {
   return (
@@ -32,7 +31,6 @@ function ContactUs() {
       </div>
 
       <div className="col"></div>
-      <Footer />
     </div>
   );
 }

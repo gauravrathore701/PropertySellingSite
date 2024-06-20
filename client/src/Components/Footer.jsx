@@ -11,6 +11,12 @@ function Footer() {
               <Link to="/login">Login Page</Link>
             </li>
             <li>
+              <Link to="/register">Register Profile</Link>
+            </li>
+            <li>
+              <Link to="/edit-user">Edit Profile</Link>
+            </li>
+            <li>
               <Link to="/contact-us">Contact Us Page</Link>
             </li>
             <li>
