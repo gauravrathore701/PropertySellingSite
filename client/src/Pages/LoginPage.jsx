@@ -1,28 +1,28 @@
 import { useState } from "react";
 import { TbEye } from "react-icons/tb";
-import { GoEyeClosed } from "react-icons/go"
+import { GoEyeClosed } from "react-icons/go";
 import Footer from "../Components/Footer";
-
+import { Link } from "react-router-dom";
 
 function LoginPage() {
-//   // create state members
+  //   // create state members
   // const [email, setEmail] = useState("");
   const [showPassword, setShowPassword] = useState("");
-  const[data,setData] = useState({
-    email : "",
-    password : ""
-})
+  const [data, setData] = useState({
+    email: "",
+    password: "",
+  });
 
-const handleOnChange = (e) =>{
-  const {name,value} = e.target
+  const handleOnChange = (e) => {
+    const { name, value } = e.target;
 
-    setData((prev)=>{
-      return{
+    setData((prev) => {
+      return {
         ...prev,
-        [name] : value
-      }
-    })
-}
+        [name]: value,
+      };
+    });
+  };
 
   // get the navigate object
   // const navigate = useNavigate()
@@ -61,50 +61,48 @@ const handleOnChange = (e) =>{
 
   return (
     <div>
-         <div className="container formContainer loginForm col-lg-6 col-md-12 px-4">
-    
-    <h2 className="centered mb-5 mt-6">Login here</h2>
-    <div className="form-label">Email</div>
-    <input onChange={handleOnChange}
-            type="email"
-            name="email"
-            value={data.email}
-            placeholder="Enter Your Email"
-            className="form-control" />
-    
-    <div className="form-label">Password</div>
-    <input
+      <div className="container loginformContainer loginForm col-lg-6  mb-1 px-7 py-4">
+        <h2 className="centered mb-4 mt-6">Login here</h2>
+        <div className="form-label">Email</div>
+        <input
+          onChange={handleOnChange}
+          type="email"
+          name="email"
+          value={data.email}
+          placeholder="Enter Your Email"
+          className="form-control"
+        />
+
+        <div className="form-label">Password</div>
+        <div className="d-flex align-items-center position-relative">
+          <input
             type={showPassword ? "text" : "password"}
-            placeholder="Enter Your password"
+            placeholder="Enter Your Password"
             name="password"
             value={data.password}
             onChange={handleOnChange}
             className="form-control"
-            style={{ paddingRight: '2rem' }}
           />
           <div
             onClick={() => setShowPassword((prev) => !prev)}
-            style={{
-              position: 'absolute',
-              right: '27%',
-              top: '22%',
-              transform: 'translateY(-50%)',
-              cursor: 'pointer'
-            }}
+            className="position-absolute end-0 me-2"
+            style={{ cursor: "pointer" }}
           >
-            <span style={{ fontSize: '1.7rem' }}>
+            <span style={{ fontSize: "1.7rem" }}>
               {showPassword ? <TbEye /> : <GoEyeClosed />}
             </span>
           </div>
-          <div>
-            Don't have an account yet?{" "}
-            {/* <Link to='/register'>Register here</Link> */}
-          </div>
-          <button className="mt-2 btn btn-success">Login</button>
-</div>
-            <Footer/>
+        </div>
+
+        <div>
+          Don't have an account yet? <Link to="/">Register here</Link>
+        </div>
+        <button className="mt-2 btn btn-success">Login</button>
+      </div>
+      <div style={{ position: "absolute", bottom: "0" }}>
+        <Footer />
+      </div>
     </div>
-   
   );
 }
 
