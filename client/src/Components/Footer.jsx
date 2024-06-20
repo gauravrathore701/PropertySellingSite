@@ -19,6 +19,9 @@ function Footer() {
             <li>
               <Link to="/add-property">Add Property Page</Link>
             </li>
+            <li>
+              <Link to="/product-card">Product Card</Link>
+            </li>
           </list>
         </div>
         <div className="col-md-5 col-sm-12 mt-2">

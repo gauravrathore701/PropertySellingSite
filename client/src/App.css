@@ -16,6 +16,7 @@
   background-color: whitesmoke; /* Does Nothing just there to fill the class */
 }
 
+
 /* login for design */
 .loginformContainer {
   box-shadow: 10px 10px 35px 5px rgba(0, 0, 0, 0.4);
@@ -23,6 +24,12 @@
   -moz-box-shadow: 10px 10px 35px 5px rgba(0, 0, 0, 0.4);
   background-color: whitesmoke;
   min-height: 45vh;
+
+/* Product Card Designs */
+.product-container {
+  width: 200px;
+  border: 1px solid red;
+  display: flex;
 }
 
 /* Footer Designs */
