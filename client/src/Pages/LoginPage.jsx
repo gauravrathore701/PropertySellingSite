@@ -95,7 +95,15 @@ function LoginPage() {
         </div>
 
         <div>
-          Don't have an account yet? <Link to="/">Register here</Link>
+          <p className="my-5">
+            Don't have account ?{" "}
+            <Link
+              to={"/login"}
+              className="tw-text-blue-500 hover:tw-text-red-800 tw-underline"
+            >
+              Sign Up
+            </Link>
+          </p>
         </div>
         <button className="mt-2 btn btn-success">Login</button>
       </div>
