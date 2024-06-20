@@ -54,7 +54,7 @@ function ProductCard({ page = { name: "default" } }) {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
 export default ProductCard;

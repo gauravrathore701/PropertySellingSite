@@ -12,7 +12,7 @@ function WishlistPage() {
           {arr.map((element) => {
             return (
               <div className="col m-2">
-                <ProductCard page={{ name: "wishlist" }} />;
+                <ProductCard page={{ name: "wishlist" }} />
               </div>
             );
           })}
