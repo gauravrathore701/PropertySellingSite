@@ -62,7 +62,7 @@ function LoginPage() {
   return (
     <div>
       <div className="container loginformContainer loginForm col-lg-6  mb-1 px-7 py-4">
-        <h2 className="centered mb-4 mt-6">Login here</h2>
+        <h2 className="centered tw-h mb-4 mt-6">Login here</h2>
         <div className="form-label">Email</div>
         <input
           onChange={handleOnChange}
