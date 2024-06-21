@@ -15,6 +15,9 @@ function List() {
         <br />
         <Link to="/wishlist">Wishlist Page</Link>
         <br />
+        <br />
+        <Link to="/register-page">Register Page</Link>
+        <br />
       </h3>
     </div>
   );

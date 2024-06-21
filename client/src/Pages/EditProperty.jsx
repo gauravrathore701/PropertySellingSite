@@ -1,9 +1,11 @@
 import Footer from "../Components/Footer";
+import Header from "../Components/Header";
 
 function EditProperty() {
   return (
     <div>
-      <div className="row">
+      <Header />
+      <div className="row mt-3">
         <div className="col md-4"></div>
 
         <div className="container contactUsForm col-lg-6 col-md-12 px-4 mt-3 ">

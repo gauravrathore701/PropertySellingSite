@@ -4,8 +4,8 @@
 
 | No  | Page Name                | Assigned To | Status |
 | --- | ------------------------ | ----------- | ------ |
-| 1   | Login Page               | Saurabh     |        |
-| 2   | Register Page (User)     | Saurabh     |        |
+| 1   | Login Page               | Saurabh     | Done   |
+| 2   | Register Page (User)     | Saurabh     | Done   |
 | 3   | Edit Profile (User)      | Pritesh     | W.I.P  |
 | 4   | Dash Board (User)        |             |        |
 | 5   | Home Page                |             |        |
@@ -21,6 +21,6 @@
 
 | No  | Component Name | Assigned To | Status |
 | --- | -------------- | ----------- | ------ |
-| 1   | Header         | Gaurav      |        |
+| 1   | Header         | Gaurav      | W.I.P  |
 | 2   | Footer         | Gaurav      | W.I.P  |
 | 3   | Property Card  | Gaurav      | Done   |

@@ -3,45 +3,43 @@ import { Link } from "react-router-dom";
 function Footer() {
   return (
     <div className="footer container-fluid">
-      <div className="row pt-1 pb-5 mx-4">
-        <div className="col-md-5 col-sm-12 mt-2">
-          <h5>Quick Links (For Developer Navigation(ForNow))</h5>
-          <list>
-            <li>
-              <Link to="/login">Login Page</Link>
-            </li>
-            <li>
-              <Link to="/contact-us">Contact Us Page</Link>
-            </li>
-            <li>
-              <Link to="/edit-property">Edit Property Page</Link>
-            </li>
-            <li>
-              <Link to="/add-property">Add Property Page</Link>
-            </li>
-            <li>
-              <Link to="/product-card">Product Card</Link>
-            </li>
-          </list>
+      <div className="row pt-1 pb-5">
+        <div className="col-md-4 col-sm-12 mt-2">
+          <h5>Contact Information</h5>
         </div>
-        <div className="col-md-5 col-sm-12 mt-2">
-          <h5>Something Else</h5>
-          <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque
-            pariatur, repellat aperiam quod excepturi atque mollitia tempore
-            alias, natus reprehenderit quaerat consequatur blanditiis rem
-            temporibus laboriosam? Est blanditiis minima aliquid?
+
+        <div className="col-md-4 col-sm-12 mt-2">
+          <h5>Site Map</h5>
+          <p style={{ fontSize: "medium" }}>
+            <Link>Homepage</Link> <br />
+            <Link>Register Page</Link> <br />
+            <Link>Login Page</Link> <br />
+            <Link>Wishlist Page</Link> <br />
           </p>
         </div>
-        <div className="col-md-2 col-sm-12 mt-2">
-          <h5>Social Media</h5>
+
+        <div className="col-md-4 col-sm-12 mt-2">
+          <h5>Project Information</h5>
+          <p style={{ fontSize: "medium" }}>
+            <b>Project Members:</b>
+            <ul>
+              <li>Gaurav Rathore</li>
+              <li>Chandan Dewangan</li>
+              <li>Saurabh Pable</li>
+              <li>Pritesh Naik</li>
+            </ul>
+            <b>Exerpt:</b> <br />
+            This is our CDAC Project. Which aims to showcase technical skills we
+            accquired in our CDAC Journey...
+          </p>
         </div>
       </div>
-      <div className="row mx-4">
-        <div className="col-10">
+
+      {/* Copyright Details Section */}
+      <div className="row">
+        <div className="col-10" style={{ fontSize: "medium" }}>
           &copy; 2024 Property Selling Site | <a href="#">Privacy</a> |{" "}
-          <a href="#">Terms</a> | <a href="#">SiteMap</a> |{" "}
-          <a href="#">Project Details</a>
+          <a href="#">Terms</a> | <a href="#">Project Details</a>
         </div>
         <div className="col"></div>
       </div>

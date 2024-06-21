@@ -3,6 +3,7 @@ import { TbEye } from "react-icons/tb";
 import { GoEyeClosed } from "react-icons/go";
 import Footer from "../Components/Footer";
 import { Link } from "react-router-dom";
+import Header from "../Components/Header";
 
 function LoginPage() {
   //   // create state members
@@ -61,8 +62,10 @@ function LoginPage() {
 
   return (
     <div>
-      <div className="container loginformContainer loginForm col-lg-6  mb-1 px-7 py-4">
-        <h2 className="centered mb-4 mt-6">Login here</h2>
+      <Header />
+
+      <div className="mt-3 container loginformContainer loginForm col-lg-6  mb-1 px-7 py-4">
+        <h2 className="centered tw-h mb-4 mt-6">Login here</h2>
         <div className="form-label">Email</div>
         <input
           onChange={handleOnChange}
@@ -107,7 +110,8 @@ function LoginPage() {
         </div>
         <button className="mt-2 btn btn-success">Login</button>
       </div>
-      <div style={{ position: "absolute", bottom: "0" }}>
+
+      <div style={{ position: "absolute", bottom: "0", width: "100%" }}>
         <Footer />
       </div>
     </div>
