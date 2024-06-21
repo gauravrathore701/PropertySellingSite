@@ -11,6 +11,7 @@ import LoginPage from "./Pages/LoginPage";
 import ProductCard from "./Components/ProductCard";
 import List from "./Pages/DemoListPages";
 import WishlistPage from "./Pages/Wishlist";
+import RegisterPage from "./Pages/RegisterPage";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
       <Routes>
         <Route path="/" element={<List />} />
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/register-page" element={<RegisterPage />} />
         <Route path="/contact-us" element={<ContactUs />} />
         <Route path="/edit-property" element={<EditProperty />} />
         <Route path="/add-property" element={<AddProperty />} />
