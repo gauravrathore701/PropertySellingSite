@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import Footer from "../Components/Footer";
+import Header from "../Components/Header";
 import { toast } from "react-toastify";
-import { addImages, addProperty } from "../services/property";
 
 function AddProperty() {
   const [title, setTitle] = useState("");
@@ -48,31 +48,34 @@ function AddProperty() {
     } else if (Images.length === 0) {
       toast.warning("Please Enter Property Images");
     } else {
-      Image = []
-      const files = document.getElementById("formFileMultiple");
-      for (let i = 0; i < files.files.length; i++) {
-        Image.push(files.files[i]);
-      }
-      // setImages(Image);
       const id = 1
-      const result = await addProperty(title, Address, City, State, District, Pincode, Type, Price, Area, Bedroom, Bathroom, Descpt, id)
-      // const result = await addImages(Image)
-      console.log(result)
-      if (result['Status'] === 'success') {
-        if (result['data'].length != 0) {
-          toast.success(`Property Added`)
-        }
-        else {
-          toast.warning(`Property not Added`)
-        }
-      }
-      else {
-        toast.warning(`Property not Added`)
-      }
+      //Backend Integration Code
+      // Image = []
+      // const files = document.getElementById("formFileMultiple");
+      // for (let i = 0; i < files.files.length; i++) {
+      //   Image.push(files.files[i]);
+      // }
+      // setImages(Image);
+      // const result = await addProperty(title, Address, City, State, District, Pincode, Type, Price, Area, Bedroom, Bathroom, Descpt, id)
+      // // const result = await addImages(Image)
+      // console.log(result)
+      // if (result['Status'] === 'success') {
+      //   if (result['data'].length != 0) {
+      //     toast.success(`Property Added`)
+      //   }
+      //   else {
+      //     toast.warning(`Property not Added`)
+      //   }
+      // }
+      // else {
+      //   toast.warning(`Property not Added`)
+      // }
     }
   };
   return (
-    <div className='container'>
+    <div>
+      <Header />
+      <div className='container'>
 
       <div >
         <div className="row mt-3 ">
@@ -302,6 +305,9 @@ function AddProperty() {
         </div>
       </div>
     </div>
+      <Footer />
+    </div>
   );
 }
+
 export default AddProperty;

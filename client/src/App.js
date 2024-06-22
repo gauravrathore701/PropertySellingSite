@@ -1,32 +1,32 @@
 // Utilities
-import { Route, Routes } from 'react-router-dom';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css'
-import './App.css';
+import { Route, Routes } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "./App.css";
 
 // Pages
-import AddProperty from './Pages/AddProperty';
-import ContactUs from './Pages/ContactUs';
-import EditProperty from './Pages/EditProperty';
-import LoginPage from './Pages/LoginPage';
-import RegisterPage from './Pages/RegisterPage';
-import Footer from './Components/Footer';
-import EditProfile from './Pages/EditProfile';
+import AddProperty from "./Pages/AddProperty";
+import ContactUs from "./Pages/ContactUs";
+import EditProperty from "./Pages/EditProperty";
+import LoginPage from "./Pages/LoginPage";
+import ProductCard from "./Components/ProductCard";
+import List from "./Pages/DemoListPages";
+import WishlistPage from "./Pages/Wishlist";
+import RegisterPage from "./Pages/RegisterPage";
 
 function App() {
   return (
     <div className="App">
       <Routes>
-      <Route path="/" element={<LoginPage />} />
+        <Route path="/" element={<List />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/edit-user" element={<EditProfile />} />
-        <Route path="/register" element={<RegisterPage />} />
-        <Route path='/contact-us' element={<ContactUs/>} />
-        <Route path='/edit-property' element={<EditProperty />} />
-        <Route path='/add-property' element={<AddProperty/>} />
+        <Route path="/register-page" element={<RegisterPage />} />
+        <Route path="/contact-us" element={<ContactUs />} />
+        <Route path="/edit-property" element={<EditProperty />} />
+        <Route path="/add-property" element={<AddProperty />} />
+        <Route path="/product-card" element={<ProductCard />} />
+        <Route path="/wishlist" element={<WishlistPage />} />
       </Routes>
-      <Footer/>
-      <ToastContainer />     
+      <ToastContainer />
     </div>
   );
 }
