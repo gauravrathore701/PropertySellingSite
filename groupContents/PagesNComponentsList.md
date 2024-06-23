@@ -6,7 +6,7 @@
 | --- | ------------------------ | ----------- | ------ |
 | 1   | Login Page               | Saurabh     | Done   |
 | 2   | Register Page (User)     | Saurabh     | Done   |
-| 3   | Edit Profile (User)      | Pritesh     | W.I.P  |
+| 3   | Edit Profile (User)      | Pritesh     | Done   |
 | 4   | Dash Board (User)        |             |        |
 | 5   | Home Page                |             |        |
 | 6   | Contact Us               | Gaurav      | Done   |
