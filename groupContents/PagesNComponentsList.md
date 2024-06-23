@@ -13,7 +13,7 @@
 | 7   | Add Property             | Pritesh     | Done   |
 | 8   | Edit Property            | Pritesh     | Done   |
 | 9   | Individual Property Page |             |        |
-| 10  | My Properties Page       |             |        |
+| 10  | My Properties Page       | Pritesh     | Done   |
 | 11  | Wish List                | Gaurav      | Done   |
 | 12  | Checkout Page            |             |        |
 

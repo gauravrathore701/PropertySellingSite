@@ -10,7 +10,6 @@ import ContactUs from "./Pages/ContactUs";
 import EditProperty from "./Pages/EditProperty";
 import LoginPage from "./Pages/LoginPage";
 import ProductCard from "./Components/ProductCard";
-import PropertyCard from "./Components/PropertyCard";
 import List from "./Pages/DemoListPages";
 import WishlistPage from "./Pages/Wishlist";
 import RegisterPage from "./Pages/RegisterPage";
@@ -28,8 +27,8 @@ function App() {
         <Route path="/contact-us" element={<ContactUs />} />
         <Route path="/edit-property" element={<EditProperty />} />
         <Route path="/add-property" element={<AddProperty />} />
-        <Route path="/product-card" element={<ProductCard />} />
-        <Route path="/property-card" element={<PropertyCard />} />
+        <Route path="/product-card" element={<ProductCard page={{ name: "wishlist" }} />} />
+        <Route path="/property-card" element={<ProductCard page={{ name: "Edit-Prop" }} />} />
         <Route path="/wishlist" element={<WishlistPage />} />
         <Route path="/individual-property" element={<IndividualProperties />} />
       </Routes>
