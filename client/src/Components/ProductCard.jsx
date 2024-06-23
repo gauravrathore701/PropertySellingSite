@@ -1,9 +1,21 @@
 function ProductCard({ page = { name: "default" } }) {
   function addToCartBtn() {
-    if (page.name !== "wishlist") {
+    if (page.name == "wishlist") {
       return (
-        <a href="#" class="btn btn-warning card-link">
-          Add to Cart
+        <div>
+          <a href="" class="btn btn-success card-link">
+            Buy
+          </a>
+          <a href="#" class="btn btn-warning card-link">
+            Add to Cart
+          </a>
+        </div>
+      );
+    }
+    if (page.name == "Edit-Prop") {
+      return (
+        <a href="/edit-property" class="btn btn-warning card-link">
+          Edit Property
         </a>
       );
     }
@@ -46,10 +58,6 @@ function ProductCard({ page = { name: "default" } }) {
           </li>
         </ul>
         <div class="card-body">
-          <a href="" class="btn btn-success card-link">
-            Buy
-          </a>
-
           {addToCartBtn()}
         </div>
       </div>

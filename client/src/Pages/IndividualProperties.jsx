@@ -1,6 +1,6 @@
 import Footer from "../Components/Footer";
 import Header from "../Components/Header";
-import PropertyCard from "../Components/PropertyCard";
+import ProductCard from "../Components/ProductCard";
 
 function IndividualProperties() {
   const arr = [1, 2, 3,4];
@@ -19,7 +19,7 @@ function IndividualProperties() {
           {arr.map((element) => {
             return (
               <div className="col m-4">
-                <PropertyCard page={{ name: "Edit-Prop" }} />
+                <ProductCard page={{ name: "Edit-Prop" }} />
               </div>
             );
           })}
