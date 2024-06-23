@@ -40,6 +40,19 @@
   display: flex;
 }
 
+/* Header Designs */
+@media (min-width: 800px) {
+  .header {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: black;
+    color: white;
+  }
+  .site-title {
+    font-size: x-large;
+  }
+}
+
 /* Footer Designs */
 .footer {
   position: relative;

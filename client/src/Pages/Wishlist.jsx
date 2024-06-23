@@ -1,4 +1,5 @@
 import Footer from "../Components/Footer";
+import Header from "../Components/Header";
 import ProductCard from "../Components/ProductCard";
 
 function WishlistPage() {
@@ -6,7 +7,8 @@ function WishlistPage() {
 
   return (
     <div>
-      <h1 className="centered">WishList Page</h1>
+      <Header />
+      <h1 className="centered mt-3">WishList Page</h1>
       <div className="container">
         <div className="row">
           {arr.map((element) => {

@@ -1,64 +1,21 @@
 // import index from "../index";
-
-import Footer from "../Components/Footer";
-import Header from "../Components/Header";
-
+//  Intergration with Database
 import { useState } from "react"
-import { Link } from "react-router-dom"
-import { toast } from "react-toastify"
+import Footer from "../Components/Footer"
+import Header from "../Components/Header"
 
-function RegisterPage() {
-  const [FirstName, setFirstName] = useState("")
-  const [LastName, setLastName] = useState("")
-  const [Username, setUsername] = useState("")
-  const [PhoneNumber, setPhoneNumber] = useState("")
-  const [Email, setEmail] = useState("")
+function EditProfile() {
+  const [FirstName, setFirstName] = useState("Testing")
+  const [LastName, setLastName] = useState("Tester")
+  const [Username, setUsername] = useState("Test@123")
+  const [PhoneNumber, setPhoneNumber] = useState("123456789")
+  const [Email, setEmail] = useState("test@test.com")
+  const [OldPassword, setOldPassword] = useState("")
   const [Password, setPassword] = useState("")
   const [ConfirmPassword, setConfirmPassword] = useState("")
-  const [Buyer, setBuyer] = useState(false)
+  const [Buyer, setBuyer] = useState(true)
   const [Seller, setSeller] = useState(false)
 
-  const RegisterUser = async () => {
-    if (FirstName.length === 0) {
-      toast.warning("Please Enter First Name");
-    } else if (LastName.length === 0) {
-      toast.warning("Please Enter Last Name");
-    } else if (Username.length === 0) {
-      toast.warning("Please Enter Username");
-    } else if (PhoneNumber.length === 0) {
-      toast.warning("Please Enter Phone Number");
-    } else if (PhoneNumber.length !== 10) {
-      toast.warning("Please Enter Valid Phone Number");
-    } else if (Email.length === 0) {
-      toast.warning("Please Enter Email");
-    } else {
-      if (Buyer === false && Seller === false) {
-        toast.warning("Please Select User Type");
-      }
-      else if (!(Email.includes('@') && Email.endsWith('.com'))) {
-        toast.warning("Please Enter Valid Email Address");
-      } else if (Password.length === 0) {
-        toast.warning("Please Enter Password");
-      } else if (ConfirmPassword.length === 0) {
-        toast.warning("Please Enter Confirm Password");
-      } else if (!Password.match(ConfirmPassword)) {
-        toast.warning("Password and Confirm Password are not Matching");
-      }
-      else {
-        const Bval = Buyer ? 1 : 0
-        const Sval = Seller ? 1 : 0
-        toast.success(FirstName)
-        toast.success(LastName)
-        toast.success(Username)
-        toast.success(PhoneNumber)
-        toast.success(Email)
-        toast.success(Password)
-        toast.success(ConfirmPassword)
-        toast.success("Buyer:" + Bval)
-        toast.success("Seller:" + Sval)
-      }
-    }
-  }
   return (
     <div>
       <Header />
@@ -70,7 +27,7 @@ function RegisterPage() {
 
             <div className="col formContainer">
               <center>
-                <h1 className="page-title mt-3">User Registration</h1>
+                <h1 className="page-title mt-3">Edit Profile</h1>
               </center>
               <div className="row">
                 <div className="col">
@@ -79,6 +36,7 @@ function RegisterPage() {
                     <input
                       type="text"
                       className='form-control'
+                      value={FirstName}
                       onChange={e => setFirstName(e.target.value)}
                     />
                   </div>
@@ -87,7 +45,7 @@ function RegisterPage() {
                 <div className="col">
                   <div className="mb-3">
                     <label htmlFor="">Last Name</label>
-                    <input type="text" className='form-control' onChange={e => setLastName(e.target.value)} />
+                    <input type="text" className='form-control' value={LastName} onChange={e => setLastName(e.target.value)} />
                   </div>
                 </div>
               </div>
@@ -96,7 +54,7 @@ function RegisterPage() {
                 <div className="col">
                   <div className="mb-3">
                     <label htmlFor="">Username</label>
-                    <input type='text' className='form-control' onChange={e => setUsername(e.target.value)} />
+                    <input type='text' className='form-control' value={Username} onChange={e => setUsername(e.target.value)} readOnly />
                   </div>
                 </div>
               </div>
@@ -106,7 +64,7 @@ function RegisterPage() {
                 <div className="col">
                   <div className="mb-3">
                     <label htmlFor="">Phone Number</label>
-                    <input type="number" className='form-control' onChange={e => setPhoneNumber(e.target.value)} />
+                    <input type="number" className='form-control' value={PhoneNumber} onChange={e => setPhoneNumber(e.target.value)} />
                   </div>
                 </div>
               </div>
@@ -115,7 +73,7 @@ function RegisterPage() {
                 <div className="col">
                   <div className="mb-3">
                     <label htmlFor="">Email</label>
-                    <input type="email" className='form-control' onChange={e => setEmail(e.target.value)} />
+                    <input type="email" className='form-control' value={Email} onChange={e => setEmail(e.target.value)} />
                   </div>
                 </div>
               </div>
@@ -123,7 +81,16 @@ function RegisterPage() {
               <div className="row">
                 <div className="col">
                   <div className="mb-3">
-                    <label htmlFor="">Password</label>
+                    <label htmlFor="">Old Password</label>
+                    <input type="password" className='form-control form-control-sm' onChange={e => setOldPassword(e.target.value)} />
+                  </div>
+                </div>
+              </div>
+
+              <div className="row">
+                <div className="col">
+                  <div className="mb-3">
+                    <label htmlFor="">New Password</label>
                     <input type="password" className='form-control form-control-sm' onChange={e => setPassword(e.target.value)} />
                   </div>
                 </div>
@@ -132,7 +99,7 @@ function RegisterPage() {
               <div className="row">
                 <div className="col">
                   <div className="mb-3">
-                    <label htmlFor="">Confirm Password</label>
+                    <label htmlFor="">Confirm New Password</label>
                     <input type="password" className='form-control' onChange={e => setConfirmPassword(e.target.value)} />
                   </div>
                 </div>
@@ -143,9 +110,9 @@ function RegisterPage() {
                   <div className="mb-3">
                     <label htmlFor="">User Type: </label>
                     <div class="btn-group ms-2" role="group" aria-label="Basic checkbox toggle button group">
-                      <input type="checkbox" class="btn-check" id="btncheck1" autoComplete="off" onChange={e => setBuyer(!Buyer)} />
+                      <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off" checked={Buyer} onChange={e => setBuyer(!Buyer)} />
                       <label class="btn btn-outline-primary" for="btncheck1">Buyer</label>
-                      <input type="checkbox" class="btn-check" id="btncheck2" autoComplete="off" onChange={e => setSeller(!Seller)} />
+                      <input type="checkbox" class="btn-check" id="btncheck2" autocomplete="off" checked={Seller} onChange={e => setSeller(!Seller)} />
                       <label class="btn btn-outline-primary" for="btncheck2">Seller</label>
                     </div>
                   </div>
@@ -154,10 +121,9 @@ function RegisterPage() {
 
               <div className="row">
                 <div className="col">
-                  <div className="mb-3">Already have account ? {" "}
-                    <u><Link to='/login'>Login</Link></u>
-                  </div>
-                  <button className="btn btn-success ms-2 mb-3" onClick={RegisterUser}>Register</button>
+                  <div className="mb-3"></div>
+
+                  <button className="btn btn-success ms-2 mb-3">Update Profile</button>
                   <button className="btn btn-danger mb-3 ms-4">Cancel</button>
                 </div>
               </div>
@@ -171,4 +137,5 @@ function RegisterPage() {
     </div>
   );
 }
-export default RegisterPage;
+
+export default EditProfile;
