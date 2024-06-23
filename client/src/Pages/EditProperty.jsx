@@ -15,7 +15,7 @@ function EditProperty() {
   const [Area, setArea] = useState("5000")
   const [Bedroom, setBedroom] = useState("2")
   const [Bathroom, setBathroom] = useState("2")
-  const [Price, setPrice] = useState("75000")
+  const [Price, setPrice] = useState("2000000")
 
   const fetchData = async () => {
     const id = 1
@@ -103,7 +103,7 @@ function EditProperty() {
           <div className="row mt-3 ">
             <div className="col-sm-1 col-md-2 col-lg-2"></div>
 
-            <div className="col formContainer col-lg-6 col-md-12 px-4 mt-3 ">
+            <div className="col formContainer col-lg-8 col-md-12 px-4 mt-3 ">
               <center>
                 <h1 className="page-title mt-3">Edit Property</h1>
               </center>
@@ -196,7 +196,7 @@ function EditProperty() {
                 </div>
                 <div className="mb-3">
                   <center>
-                    <input type="Submit" className="mt-3 ms-3 text-2xl btn btn-success" onClick={editProp} placeholder="Add Property" />
+                    <button type="Submit" className="mt-3 ms-3 text-2xl btn btn-success" onClick={editProp} placeholder="Update Property">Update Property</button>
                   </center>
                 </div>
               </div>

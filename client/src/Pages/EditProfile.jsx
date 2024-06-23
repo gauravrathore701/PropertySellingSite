@@ -5,11 +5,12 @@ import Footer from "../Components/Footer"
 import Header from "../Components/Header"
 
 function EditProfile() {
-  const [FirstName, setFirstName] = useState("")
-  const [LastName, setLastName] = useState("")
-  const [Username, setUsername] = useState("")
-  const [PhoneNumber, setPhoneNumber] = useState("")
-  const [Email, setEmail] = useState("")
+  const [FirstName, setFirstName] = useState("Testing")
+  const [LastName, setLastName] = useState("Tester")
+  const [Username, setUsername] = useState("Test@123")
+  const [PhoneNumber, setPhoneNumber] = useState("123456789")
+  const [Email, setEmail] = useState("test@test.com")
+  const [OldPassword, setOldPassword] = useState("")
   const [Password, setPassword] = useState("")
   const [ConfirmPassword, setConfirmPassword] = useState("")
   const [Buyer, setBuyer] = useState(true)
@@ -80,7 +81,16 @@ function EditProfile() {
               <div className="row">
                 <div className="col">
                   <div className="mb-3">
-                    <label htmlFor="">Change Password</label>
+                    <label htmlFor="">Old Password</label>
+                    <input type="password" className='form-control form-control-sm' onChange={e => setOldPassword(e.target.value)} />
+                  </div>
+                </div>
+              </div>
+
+              <div className="row">
+                <div className="col">
+                  <div className="mb-3">
+                    <label htmlFor="">New Password</label>
                     <input type="password" className='form-control form-control-sm' onChange={e => setPassword(e.target.value)} />
                   </div>
                 </div>
@@ -89,7 +99,7 @@ function EditProfile() {
               <div className="row">
                 <div className="col">
                   <div className="mb-3">
-                    <label htmlFor="">Confirm Password</label>
+                    <label htmlFor="">Confirm New Password</label>
                     <input type="password" className='form-control' onChange={e => setConfirmPassword(e.target.value)} />
                   </div>
                 </div>
@@ -99,7 +109,7 @@ function EditProfile() {
                 <div className="col">
                   <div className="mb-3">
                     <label htmlFor="">User Type: </label>
-                    <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+                    <div class="btn-group ms-2" role="group" aria-label="Basic checkbox toggle button group">
                       <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off" checked={Buyer} onChange={e => setBuyer(!Buyer)} />
                       <label class="btn btn-outline-primary" for="btncheck1">Buyer</label>
                       <input type="checkbox" class="btn-check" id="btncheck2" autocomplete="off" checked={Seller} onChange={e => setSeller(!Seller)} />

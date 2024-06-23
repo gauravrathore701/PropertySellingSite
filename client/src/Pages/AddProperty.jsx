@@ -81,7 +81,7 @@ function AddProperty() {
         <div className="row mt-3 ">
           <div className="col-sm-1 col-md-2 col-lg-2"></div>
 
-          <div className="col formContainer col-lg-6 col-md-12 px-4 mt-3 ">
+          <div className="col formContainer col-lg-8 col-md-12 px-4 mt-3 ">
             <center>
               <h1 className="page-title mt-3">Add Property</h1>
             </center>
@@ -287,13 +287,7 @@ function AddProperty() {
               </div>
               <div className="mb-3">
                 <center>
-
-                  <input
-                    type="Submit"
-                    className="mt-3 ms-3 text-2xl btn btn-success"
-                    onClick={addProp}
-                    placeholder="Add Property"
-                  />
+                <button type="Submit" className="mt-3 ms-3 text-2xl btn btn-success" onClick={addProp} placeholder="Add Property">Add Property</button>
                 </center>
               </div>
             </div>

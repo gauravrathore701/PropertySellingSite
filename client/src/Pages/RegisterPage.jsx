@@ -142,7 +142,7 @@ function RegisterPage() {
                 <div className="col">
                   <div className="mb-3">
                     <label htmlFor="">User Type: </label>
-                    <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+                    <div class="btn-group ms-2" role="group" aria-label="Basic checkbox toggle button group">
                       <input type="checkbox" class="btn-check" id="btncheck1" autoComplete="off" onChange={e => setBuyer(!Buyer)} />
                       <label class="btn btn-outline-primary" for="btncheck1">Buyer</label>
                       <input type="checkbox" class="btn-check" id="btncheck2" autoComplete="off" onChange={e => setSeller(!Seller)} />
