@@ -5,7 +5,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Footer from "../Components/Footer";
-import { Link } from "react-router-dom";
 import Header from "../Components/Header";
 
 function LoginPage() {
@@ -70,27 +69,11 @@ function LoginPage() {
 
   return (
     <div>
-
+      <Header />
       <div className="container loginformContainer loginForm col-lg-6  mb-1 px-7 py-4">
         <h2 className="centered mb-4 mt-6">Login here</h2>
         <form onSubmit={handleSubmit}>
           <div className="form-label">Email</div>
-      <Header />
-
-      <div className="mt-3 container loginformContainer loginForm col-lg-6  mb-1 px-7 py-4">
-        <h2 className="centered tw-h mb-4 mt-6">Login here</h2>
-        <div className="form-label">Email</div>
-        <input
-          onChange={handleOnChange}
-          type="email"
-          name="email"
-          value={data.email}
-          placeholder="Enter Your Email"
-          className="form-control"
-        />
-
-        <div className="form-label">Password</div>
-        <div className="d-flex align-items-center position-relative">
           <input
             onChange={handleOnChange}
             type="email"
@@ -148,7 +131,6 @@ function LoginPage() {
           </button>
         </form>
       </div>
-
       <div style={{ position: "absolute", bottom: "0", width: "100%" }}>
         <Footer />
       </div>
