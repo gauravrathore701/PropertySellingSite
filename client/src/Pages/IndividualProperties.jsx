@@ -24,14 +24,13 @@ function IndividualProperties() {
   const [Price, setPrice] = useState("2000000")
   const settings = {
     dots: true,
-    fade: true,
     infinite: true,
-    speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    waitForAnimate: false
+    autoplay: true,
+    autoplaySpeed: 100,
+    pauseOnHover: true
   };
-  const arr = [1, 2, 3, 4];
 
   return (
     <div>
@@ -45,17 +44,17 @@ function IndividualProperties() {
           <Slider {...settings}>
             <div>
               <center>
-                <img src={prop1} alt="..." className="CarouselImage" />
+                <img src={prop1} alt="Property1" className="CarouselImage" />
               </center>
             </div>
             <div>
               <center>
-                <img src={prop2} alt="..." className="CarouselImage" />
+                <img src={prop2} alt="Property2" className="CarouselImage" />
               </center>
             </div>
             <div>
               <center>
-                <img src={prop3} alt="..." className="CarouselImage" />
+                <img src={prop3} alt="Property3" className="CarouselImage" />
               </center>
             </div>
           </Slider>
@@ -64,7 +63,7 @@ function IndividualProperties() {
         <div class="container">
           <div class="row">
             <div class="col-6">
-              <h2>Rating</h2>
+              <h2>Propperty Rating:</h2>
               <Rating name="Property-Rating" defaultValue={0} precision={0.5} />
               <hr />
               <br />
