@@ -71,7 +71,7 @@ function IndividualProperties() {
               <p className="fs-5"><b>Area:</b>{Area}{" "}sq.mt</p>
               <p className="fs-5"><b>Bedroom Count:</b>{Bedroom}</p>
               <p className="fs-5"><b>Bathroom Count:</b>{Bathroom}</p>
-
+              <p className="fs-5"><b>Property Owner:</b>Test User 1</p>
               <br />
             </div>
             <div class="col-6">
