@@ -28,7 +28,7 @@ function IndividualProperties() {
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 100,
+    autoplaySpeed: 2000,
     pauseOnHover: true
   };
 
