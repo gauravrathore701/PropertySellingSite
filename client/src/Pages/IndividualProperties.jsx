@@ -4,6 +4,7 @@ import prop1 from "../Assets/Images/Property-1.jpg"
 import prop2 from "../Assets/Images/Property-2.jpg"
 import prop3 from "../Assets/Images/Property-3.jpg"
 import React, { useState } from "react";
+import Rating from '@mui/material/Rating';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -63,6 +64,10 @@ function IndividualProperties() {
         <div class="container">
           <div class="row">
             <div class="col-6">
+              <h2>Rating</h2>
+              <Rating name="Property-Rating" defaultValue={0} precision={0.5} />
+              <hr />
+              <br />
               <h2><em>Property Short Description:</em></h2>
               <p>{Descpt}</p>
               <br />
