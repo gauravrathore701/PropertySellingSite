@@ -4,6 +4,7 @@ import prop1 from "../Assets/Images/Property-1.jpg"
 import prop2 from "../Assets/Images/Property-2.jpg"
 import prop3 from "../Assets/Images/Property-3.jpg"
 import React, { useState } from "react";
+import Rating from '@mui/material/Rating';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -23,14 +24,13 @@ function IndividualProperties() {
   const [Price, setPrice] = useState("2000000")
   const settings = {
     dots: true,
-    fade: true,
     infinite: true,
-    speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    waitForAnimate: false
+    autoplay: true,
+    autoplaySpeed: 100,
+    pauseOnHover: true
   };
-  const arr = [1, 2, 3, 4];
 
   return (
     <div>
@@ -44,17 +44,17 @@ function IndividualProperties() {
           <Slider {...settings}>
             <div>
               <center>
-                <img src={prop1} alt="..." className="CarouselImage" />
+                <img src={prop1} alt="Property1" className="CarouselImage" />
               </center>
             </div>
             <div>
               <center>
-                <img src={prop2} alt="..." className="CarouselImage" />
+                <img src={prop2} alt="Property2" className="CarouselImage" />
               </center>
             </div>
             <div>
               <center>
-                <img src={prop3} alt="..." className="CarouselImage" />
+                <img src={prop3} alt="Property3" className="CarouselImage" />
               </center>
             </div>
           </Slider>
@@ -63,8 +63,13 @@ function IndividualProperties() {
         <div class="container">
           <div class="row">
             <div class="col-6">
+              <h2>Propperty Rating:</h2>
+              <Rating name="Property-Rating" defaultValue={0} precision={0.5} />
+              <hr />
+              <br />
               <h2><em>Property Short Description:</em></h2>
               <p>{Descpt}</p>
+              <hr />
               <br />
               <h2><em>Property Specifications:</em></h2>
               <p className="fs-5"><b>Type:</b>{Type}</p>
@@ -81,6 +86,7 @@ function IndividualProperties() {
               <p className="fs-5"><b>District:</b><em>{District}</em> &nbsp;&nbsp;&nbsp;&nbsp;<b>State:</b>{State}</p>
               <p className="fs-5"><b>Pincode:</b>{Pincode}</p>
               <br />
+              <hr />
               <br />
               <p className="fs-5"><b>Price:$</b>{Price}&nbsp;&nbsp;&nbsp;&nbsp; <button className="btn btn-success ms-2"><a href="/">Buy Now</a></button></p>
               <button className="btn btn-warning me-3"><a href="/wishlist">Add to Wishlist</a></button>
