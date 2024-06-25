@@ -75,3 +75,9 @@ body {
   height: 100%;
   overflow-x: hidden;
 }
+
+/* Carousels Images */
+.CarouselImage{
+  height:20%;
+  max-height: 500px;
+}

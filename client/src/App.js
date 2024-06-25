@@ -14,6 +14,7 @@ import List from "./Pages/DemoListPages";
 import WishlistPage from "./Pages/Wishlist";
 import RegisterPage from "./Pages/RegisterPage";
 import EditProfile from "./Pages/EditProfile"
+import MyProperities from "./Pages/MyProperities";
 import IndividualProperties from "./Pages/IndividualProperties";
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
         <Route path="/product-card" element={<ProductCard page={{ name: "wishlist" }} />} />
         <Route path="/property-card" element={<ProductCard page={{ name: "Edit-Prop" }} />} />
         <Route path="/wishlist" element={<WishlistPage />} />
+        <Route path="/Properities" element={<MyProperities />} />
         <Route path="/individual-property" element={<IndividualProperties />} />
       </Routes>
       <ToastContainer />
