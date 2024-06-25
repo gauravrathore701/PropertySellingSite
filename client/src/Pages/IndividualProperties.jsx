@@ -70,6 +70,7 @@ function IndividualProperties() {
               <br />
               <h2><em>Property Short Description:</em></h2>
               <p>{Descpt}</p>
+              <hr />
               <br />
               <h2><em>Property Specifications:</em></h2>
               <p className="fs-5"><b>Type:</b>{Type}</p>
@@ -86,6 +87,7 @@ function IndividualProperties() {
               <p className="fs-5"><b>District:</b><em>{District}</em> &nbsp;&nbsp;&nbsp;&nbsp;<b>State:</b>{State}</p>
               <p className="fs-5"><b>Pincode:</b>{Pincode}</p>
               <br />
+              <hr />
               <br />
               <p className="fs-5"><b>Price:$</b>{Price}&nbsp;&nbsp;&nbsp;&nbsp; <button className="btn btn-success ms-2"><a href="/">Buy Now</a></button></p>
               <button className="btn btn-warning me-3"><a href="/wishlist">Add to Wishlist</a></button>
