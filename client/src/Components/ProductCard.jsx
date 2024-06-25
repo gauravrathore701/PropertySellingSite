@@ -57,12 +57,10 @@ function ProductCard({ page = { name: "default" } }) {
             <b>Seller Name:</b> Someone
           </li>
         </ul>
-        <div class="card-body">
-          {addToCartBtn()}
-        </div>
+        <div class="card-body">{addToCartBtn()}</div>
       </div>
     </div>
-  )
+  );
 }
 
 export default ProductCard;
