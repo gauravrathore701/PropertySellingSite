@@ -35,7 +35,7 @@ function IndividualProperties() {
   return (
     <div>
       <Header />
-      <h1 className="centered mt-3">Individual Data</h1>
+      <h1 className="centered mt-3">Individual Property</h1>
       <div className="container">
         <h2>Property Name: <b>{Title}</b> </h2>
         <div className="slider-container mb-3">
