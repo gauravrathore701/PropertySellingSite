@@ -16,8 +16,17 @@
   background-color: whitesmoke; /* Does Nothing just there to fill the class */
 }
 
-/* login for design */
+/* Login Form Designs */
 .loginformContainer {
+  box-shadow: 10px 10px 35px 5px rgba(0, 0, 0, 0.4);
+  -webkit-box-shadow: 10px 10px 35px 5px rgba(0, 0, 0, 0.4);
+  -moz-box-shadow: 10px 10px 35px 5px rgba(0, 0, 0, 0.4);
+  background-color: whitesmoke;
+  min-height: 45vh;
+}
+
+/* ResetPassword Form Designs */
+.resetPasswordFormContainer {
   box-shadow: 10px 10px 35px 5px rgba(0, 0, 0, 0.4);
   -webkit-box-shadow: 10px 10px 35px 5px rgba(0, 0, 0, 0.4);
   -moz-box-shadow: 10px 10px 35px 5px rgba(0, 0, 0, 0.4);
