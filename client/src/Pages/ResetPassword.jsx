@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Footer from "../Components/Footer";
+import Header from "../Components/Header";
 
 function ResetPasswordPage() {
   const [showOldPassword, setShowOldPassword] = useState(false);
@@ -66,6 +67,7 @@ function ResetPasswordPage() {
 
   return (
     <div>
+      <Header />
       <div className="container resetPasswordFormContainer col-lg-6 mb-1 px-7 py-4">
         <h2 className="centered mb-4 mt-6">Reset Password</h2>
         <form onSubmit={handleSubmit}>
@@ -137,7 +139,7 @@ function ResetPasswordPage() {
           </button>
         </form>
       </div>
-      <div style={{ position: "absolute", bottom: "0" }}>
+      <div style={{ position: "absolute", bottom: "0", width: "100%" }}>
         <Footer />
       </div>
     </div>

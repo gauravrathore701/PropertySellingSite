@@ -3,7 +3,7 @@ import Header from "../Components/Header";
 import ProductCard from "../Components/ProductCard";
 
 function MyProperities() {
-  const arr = [1, 2, 3,4];
+  const arr = [1, 2, 3, 4];
 
   return (
     <div>
@@ -11,9 +11,9 @@ function MyProperities() {
       <h1 className="centered mt-3">My Properties</h1>
       <div className="container">
         <div className="d-grid gap-2 d-md-flex justify-content-md-end mb-3 me-5">
-        <a href="/add-property" class="btn btn-success me-5">
-          Add New Property
-        </a>
+          <a href="/add-property" class="btn btn-success me-5">
+            Add New Property
+          </a>
         </div>
         <div className="row">
           {arr.map((element) => {
