@@ -88,7 +88,7 @@ function IndividualProperties() {
               <br />
               <hr />
               <br />
-              <p className="fs-5"><b>Price:&#8377;</b>{Price}&nbsp;&nbsp;&nbsp;&nbsp; <button className="btn btn-success ms-2"><a href="/">Buy Now</a></button></p>
+              <p className="fs-5"><b>Price:&#8377;</b>{Price}&nbsp;&nbsp;&nbsp;&nbsp; <button className="btn btn-success ms-2"><a href="/cart">Buy Now</a></button></p>
               <button className="btn btn-warning me-3"><a href="/wishlist">Add to Wishlist</a></button>
               <button className="btn btn-primary ms-3"><a href="/cart">Add to Cart</a></button>
             </div>
