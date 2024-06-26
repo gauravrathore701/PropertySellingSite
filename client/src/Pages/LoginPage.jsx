@@ -46,7 +46,7 @@ function LoginPage() {
 
       // Show success toast
       toast.success("Login successful!");
-      navigate("/");
+      navigate("/dashboard");
     }
   };
 
@@ -109,7 +109,7 @@ function LoginPage() {
               <p className="my-5 mt-2 mb-2">
                 Don't have an account?{" "}
                 <Link
-                  to={"/signup"}
+                  to={"/register-page"}
                   className="tw-text-blue-500 hover:tw-text-red-800 tw-underline"
                 >
                   Sign Up

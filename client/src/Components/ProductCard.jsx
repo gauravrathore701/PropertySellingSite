@@ -3,21 +3,32 @@ function ProductCard({ page = { name: "default" } }) {
     if (page.name == "wishlist") {
       return (
         <div>
-          <a href="" class="btn btn-success card-link">
-            Buy
+          <a
+            href="/individual-property"
+            class="btn btn-secondary card-link mb-2"
+          >
+            Show Property
           </a>
-          <a href="#" class="btn btn-warning card-link">
-            Add to Cart
+          <a href="/checkout" class="btn btn-success card-link mb-2">
+            Buy Property
           </a>
         </div>
       );
     }
     if (page.name == "Edit-Prop") {
       return (
-        <a href="/edit-property" class="btn btn-warning card-link">
-          Edit Property
-        </a>
+        <div>
+          <a href="/individual-property" class="btn btn-success card-link mb-2">
+            Show Property
+          </a>
+          <a href="/edit-property" class="btn btn-warning card-link mb-2">
+            Edit Property
+          </a>
+        </div>
       );
+    }
+    if (page.name == "Checkout-Prop") {
+      return <div></div>;
     }
   }
 
