@@ -122,16 +122,8 @@ function IndividualProperties() {
               <br />
               <hr />
               <br />
-              <p className="fs-5">
-                <b>Price:$</b>
-                {Price}&nbsp;&nbsp;&nbsp;&nbsp;{" "}
-                <button className="btn btn-success ms-2">
-                  <a href="/checkout">Buy Now</a>
-                </button>
-              </p>
-              <button className="btn btn-warning me-3">
-                <a href="/wishlist">Add to Wishlist</a>
-              </button>
+              <p className="fs-5"><b>Price:&#8377;</b>{Price}&nbsp;&nbsp;&nbsp;&nbsp; <button className="btn btn-success ms-2"><a href="/checkout">Buy Now</a></button></p>
+              <button className="btn btn-warning me-3"><a href="/wishlist">Add to Wishlist</a></button>
             </div>
           </div>
         </div>

@@ -13,13 +13,13 @@ import ProductCard from "./Components/ProductCard";
 import WishlistPage from "./Pages/Wishlist";
 import RegisterPage from "./Pages/RegisterPage";
 import EditProfile from "./Pages/EditProfile";
-import EditProfile from "./Pages/EditProfile"
 import MyProperities from "./Pages/MyProperities";
 import IndividualProperties from "./Pages/IndividualProperties";
 import Homepage from "./Pages/Homepage";
 import Dashboard from "./Pages/Dashboard";
 import ResetPasswordPage from "./Pages/ResetPassword";
 import Checkout from "./Pages/Checkout";
+import CartPage from "./Pages/CartPage"
 
 function App() {
   return (

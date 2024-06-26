@@ -30,6 +30,7 @@ function ProductCard({ page = { name: "default" } }) {
     }
     if (page.name == "Checkout-Prop") {
       return <div></div>;
+      );
     }
   }
 
