@@ -13,6 +13,8 @@ import ProductCard from "./Components/ProductCard";
 import WishlistPage from "./Pages/Wishlist";
 import RegisterPage from "./Pages/RegisterPage";
 import EditProfile from "./Pages/EditProfile";
+import EditProfile from "./Pages/EditProfile"
+import MyProperities from "./Pages/MyProperities";
 import IndividualProperties from "./Pages/IndividualProperties";
 import Homepage from "./Pages/Homepage";
 import Dashboard from "./Pages/Dashboard";
@@ -40,6 +42,7 @@ function App() {
           element={<ProductCard page={{ name: "Edit-Prop" }} />}
         />
         <Route path="/wishlist" element={<WishlistPage />} />
+        <Route path="/Properities" element={<MyProperities />} />
         <Route path="/individual-property" element={<IndividualProperties />} />
         <Route path="/forgot-password" element={<ResetPasswordPage />} />
         <Route path="/checkout" element={<Checkout />} />

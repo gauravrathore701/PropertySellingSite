@@ -11,6 +11,7 @@ function ProductCard({ page = { name: "default" } }) {
           </a>
           <a href="/checkout" class="btn btn-success card-link mb-2">
             Buy Property
+
           </a>
         </div>
       );

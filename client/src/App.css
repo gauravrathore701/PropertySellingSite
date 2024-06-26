@@ -196,3 +196,9 @@ body {
 141314
 9F86FF
 */
+
+/* Carousels Images */
+.CarouselImage{
+  height:20%;
+  max-height: 500px;
+}

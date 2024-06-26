@@ -142,3 +142,5 @@ function IndividualProperties() {
 }
 
 export default IndividualProperties;
+
+

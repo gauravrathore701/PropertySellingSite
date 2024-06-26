@@ -16,6 +16,8 @@ function List() {
         <br />
         <Link to="/edit-property">Edit Property Page</Link>
         <br />
+        <Link to="/Properities">My Properities</Link>
+        <br />
         <Link to="/individual-property">Individual Property</Link>
         <br />
         <br />
