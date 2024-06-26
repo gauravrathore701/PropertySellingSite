@@ -16,6 +16,7 @@ import RegisterPage from "./Pages/RegisterPage";
 import EditProfile from "./Pages/EditProfile"
 import MyProperities from "./Pages/MyProperities";
 import IndividualProperties from "./Pages/IndividualProperties";
+import CartPage from "./Pages/CartPage"
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
         <Route path="/wishlist" element={<WishlistPage />} />
         <Route path="/Properities" element={<MyProperities />} />
         <Route path="/individual-property" element={<IndividualProperties />} />
+        <Route path="/cart" element={<CartPage />} />
       </Routes>
       <ToastContainer />
     </div>
