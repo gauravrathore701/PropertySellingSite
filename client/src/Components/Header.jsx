@@ -20,7 +20,7 @@ function Header() {
                 </Link>
               </div>
               <div className="col">
-                <Link to="/wishlist">
+                <Link to="/login">
                   <img src={profileIcon} style={{ height: "32px" }} alt="" />
                 </Link>
               </div>

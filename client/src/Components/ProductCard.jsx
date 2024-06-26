@@ -3,14 +3,15 @@ function ProductCard({ page = { name: "default" } }) {
     if (page.name == "wishlist") {
       return (
         <div>
-          <a href="/individual-property" class="btn btn-secondary card-link mb-2">
+          <a
+            href="/individual-property"
+            class="btn btn-secondary card-link mb-2"
+          >
             Show Property
           </a>
-          <a href="" class="btn btn-success card-link mb-2">
+          <a href="/checkout" class="btn btn-success card-link mb-2">
             Buy Property
-          </a>
-          <a href="#" class="btn btn-warning card-link mb-2">
-            Add to Cart
+
           </a>
         </div>
       );
@@ -25,14 +26,10 @@ function ProductCard({ page = { name: "default" } }) {
             Edit Property
           </a>
         </div>
-
       );
     }
     if (page.name == "Checkout-Prop") {
-      return (
-        <div>
-        </div>
-
+      return <div></div>;
       );
     }
   }
