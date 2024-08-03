@@ -19,7 +19,8 @@
     "react-toastify": "^10.0.5",
     "slick-carousel": "^1.8.1",
     "toastify": "^2.0.1",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "yarn": "^1.22.22"
   },
   "scripts": {
     "start": "react-scripts start",
