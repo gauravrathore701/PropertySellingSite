@@ -35,8 +35,8 @@ public class PropertyController {
 		return ResponseEntity.ok(new ApiResponse(PropertyService.addNewProperty(request, userId)));
 	}
 	@GetMapping("/list")
-	@Operation(summary = "To getAll Property")
-	public ResponseEntity<?> gettAll(){
+	@Operation(summary = "To get All Property")
+	public ResponseEntity<?> getAll(){
 		return ResponseEntity.ok(PropertyService.getAll());
 	}
 	@PutMapping("/update/{id}")
@@ -44,9 +44,15 @@ public class PropertyController {
 	public ResponseEntity<?> updateProperty(@RequestBody PropertyRequest request,@PathVariable Long id){
 		return ResponseEntity.ok(new ApiResponse(PropertyService.UpdatePropertyDetails(request,id)));
 	}
-	@GetMapping("/{userId}")
+	@GetMapping("/type/{type}")
+	@Operation(summary = "To Get Property by Type")
+	public ResponseEntity<?> getSpecificType(@PathVariable String type){
+		return ResponseEntity.ok(PropertyService.SeachProductByType(type));
+	}
+	
+	@GetMapping("/user/{userId}")
 	@Operation(summary = "To Get Property by User")
-	public ResponseEntity<?> getSpecific(@PathVariable Long userId){
+	public ResponseEntity<?> getSpecificUser(@PathVariable Long userId){
 		return ResponseEntity.ok(PropertyService.SeachProductByUser(userId));
 	}
 	@DeleteMapping("/{Propertyid}")

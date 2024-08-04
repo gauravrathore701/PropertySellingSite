@@ -37,7 +37,7 @@ public class ImageController {
 		return ResponseEntity.ok(new ApiResponse(imageService.addNewImage(request, propertyId)));
 	}
 	@GetMapping("/list")
-	@Operation(summary = "To getAll Property")
+	@Operation(summary = "To get All Images")
 	public ResponseEntity<?> getAll(){
 		return ResponseEntity.ok(imageService.getAll());
 	}
