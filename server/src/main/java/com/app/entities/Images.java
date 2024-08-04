@@ -15,6 +15,6 @@ public class Images extends BaseEntity{
 	@ManyToOne
 	private Property property;
 	@Column(length = 255)
-	private String ImageLink;
+	private String imageLink;
 	
 }
