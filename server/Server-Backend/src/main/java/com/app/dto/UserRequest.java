@@ -2,14 +2,9 @@ package com.app.dto;
 
 
 import java.time.LocalDate;
-
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-
 import org.hibernate.validator.constraints.Length;
-
-import com.app.entities.Address;
-
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -35,6 +30,6 @@ public class UserRequest {
 	
 	@NotBlank
 	private String username;
-	private Address address;
+	private AddressDTO address;
 	private LocalDate dob;
 }

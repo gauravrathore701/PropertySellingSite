@@ -2,8 +2,6 @@ package com.app.dto;
 
 
 import jakarta.validation.constraints.NotBlank;
-
-
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -11,11 +9,11 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class PropertyRequest {
+public class AddressDTO {
 	@NotBlank
-	private String title;
+	private String addLine1;
 	@NotBlank
-	private String address;
+	private String addLine2;
 	@NotBlank
 	private String city;
 	@NotBlank
@@ -24,12 +22,4 @@ public class PropertyRequest {
 	private String district;
 	@NotBlank
 	private String pincode;
-	@NotBlank
-	private String propertyType;
-	private String status;
-	private float price;
-	private float propertyArea;
-	private int bedrooms;
-	private int bathrooms;
-	private String description;
 }

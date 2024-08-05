@@ -1,8 +1,11 @@
 package com.app.entities;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Lob;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 
@@ -27,8 +30,9 @@ public class Users extends BaseEntity {
 	@Column(length = 20)
 	private String phone;
 	
-	@Column(length = 255)
-	private Address address=null;
+	@OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "Address")
+	private Address address;
 	
 	@Lob
 	private Byte[] profilePicture;

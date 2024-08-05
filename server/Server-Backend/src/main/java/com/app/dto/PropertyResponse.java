@@ -2,6 +2,7 @@ package com.app.dto;
 
 
 import java.time.LocalDateTime;
+import java.util.Set;
 
 import jakarta.validation.constraints.NotBlank;
 
@@ -18,7 +19,8 @@ public class PropertyResponse {
 	private Long id;
 	@NotBlank
 	private String title;
-	private Address address;
+	private AddressDTO address;
+	private Set<TagsDTOResponse> tags;
 	@NotBlank
 	private String propertyType;
 	private float price;
@@ -26,6 +28,8 @@ public class PropertyResponse {
 	private int bedrooms;
 	private int bathrooms;
 	private String description;
+	private Boolean isSold;
+	private Boolean isDeleted;
 	private LocalDateTime UpdatedDateTime;
 	private LocalDateTime createdDateTime;
 }

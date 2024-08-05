@@ -23,7 +23,7 @@
 //		// ret list of granted authorities
 //		// GrantedAuthority : i/f -<--- SimpleGrantedAuthority(String role)
 //		return List.of(new SimpleGrantedAuthority
-//				(user.getUsername()));
+//				(user.getEmail()));
 //	}
 //
 //	@Override

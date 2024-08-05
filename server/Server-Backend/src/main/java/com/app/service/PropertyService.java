@@ -13,6 +13,8 @@ public interface PropertyService {
 	String addNewProperty(@Valid PropertyRequest request, Long Userid);
 
 	String UpdatePropertyDetails(PropertyRequest request, Long Propertyid);
+	
+	String SellingProperty(PropertyRequest request, Long Propertyid);
 
 	List<PropertyResponse> SeachProductByType(String category);
 	

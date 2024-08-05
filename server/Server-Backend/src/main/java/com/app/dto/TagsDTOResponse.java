@@ -1,0 +1,29 @@
+package com.app.dto;
+
+
+import java.util.Set;
+
+import com.app.entities.Property;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
+
+import jakarta.validation.constraints.NotBlank;
+
+
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@NoArgsConstructor
+@Getter
+@Setter
+public class TagsDTOResponse {
+	@NotBlank
+	private String tagName;
+	@NotBlank
+	private String tagDesc;
+}

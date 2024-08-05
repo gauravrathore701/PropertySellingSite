@@ -8,16 +8,19 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
-@Embeddable
+@Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Address {
+@Table(name = "address")
+public class Address extends BaseEntity{
 	
-	@Column(length = 255,nullable = false)
-	private String address;
+	@Column(length = 100,nullable = false)
+	private String addLine1;
+	
+	@Column(length = 100,nullable = false)
+	private String addLine2;
 	
 	@Column(length = 100,nullable = false)
 	private String city;
@@ -30,5 +33,9 @@ public class Address {
 	
 	@Column(length = 10,nullable = false)
 	private String pincode;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "property")
+	private Property property;
 	
 }
