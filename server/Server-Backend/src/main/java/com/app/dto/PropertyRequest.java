@@ -3,10 +3,7 @@ package com.app.dto;
 
 import java.util.Set;
 
-import com.app.entities.Address;
 import com.app.entities.PropertyType;
-import com.app.entities.Tags;
-
 import jakarta.validation.constraints.NotBlank;
 
 
@@ -28,5 +25,5 @@ public class PropertyRequest {
 	private int bedrooms;
 	private int washrooms;
 	private AddressDTO address;
-	private Set<TagsDTO> tags;
+	private Set<TagsDTORequest> tags;
 }

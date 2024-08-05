@@ -6,8 +6,6 @@ import java.util.Set;
 
 import jakarta.validation.constraints.NotBlank;
 
-import com.app.entities.Address;
-
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
