@@ -15,5 +15,5 @@ public interface ImageService {
 
 	String DeletePropertyImages(Long imageId);
 	
-	List<ImageDTOResponse> SeachProductByProperty(Long propertyId);	
+	List<ImageDTOResponse> SeachImagesByProperty(Long propertyId);	
 }

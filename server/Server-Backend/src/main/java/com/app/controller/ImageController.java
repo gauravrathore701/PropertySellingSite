@@ -44,7 +44,7 @@ public class ImageController {
 	@GetMapping("/list/{propertyId}")
 	@Operation(summary = "To Get Image by Property")
 	public ResponseEntity<?> getSpecificProperty(@PathVariable Long propertyId){
-		return ResponseEntity.ok(imageService.SeachProductByProperty(propertyId));
+		return ResponseEntity.ok(imageService.SeachImagesByProperty(propertyId));
 	}
 	@DeleteMapping("/{imageId}")
 	@Operation(summary = "To Delete Image")

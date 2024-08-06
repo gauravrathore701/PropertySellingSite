@@ -81,7 +81,7 @@ public class ImageServiceImpl implements ImageService {
 	}
 
 	@Override
-	public List<ImageDTOResponse> SeachProductByProperty(Long propertyId) {
+	public List<ImageDTOResponse> SeachImagesByProperty(Long propertyId) {
 		Property p= propertyDao.findById(propertyId).orElseThrow((()->new ResourceNotFoundException("Invalid Property Id Given")));
 		List<Images> imgList=imageDao.findByProperty(p);
 		List<ImageDTOResponse> imgDList=new ArrayList<ImageDTOResponse>();

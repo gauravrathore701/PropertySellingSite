@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.app.dao.UserDao;
-import com.app.dto.UserRequest;
+import com.app.dto.UserDTORequest;
 import com.app.entities.Users;
 
 @Service
@@ -23,12 +23,12 @@ public class UserServiceImpl implements UserService {
 	private ModelMapper mapper;
 
 	@Override
-	public String addNewUser(UserRequest request) {
+	public String addNewUser(UserDTORequest request) {
 		Users u= mapper.map(request, Users.class);
+		u.setAdmin(false);
 		userDao.save(u);
 		return "User Added";
 	}
-
 	@Override
 	public List<Users> getAll() {
 		return userDao.findAll();

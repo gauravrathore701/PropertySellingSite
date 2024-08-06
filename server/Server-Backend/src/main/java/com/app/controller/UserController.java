@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.app.dto.UserRequest;
+import com.app.dto.UserDTORequest;
 import com.app.service.UserService;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -29,7 +29,7 @@ public class UserController {
 	
 	@PostMapping("/add")
 	@Operation(summary = "To Add new User")
-	public ResponseEntity<?> addNew(@RequestBody @Valid UserRequest request){
+	public ResponseEntity<?> addNew(@RequestBody @Valid UserDTORequest request){
 		return ResponseEntity.ok(new ApiResponse(userService.addNewUser(request)));
 	}
 	

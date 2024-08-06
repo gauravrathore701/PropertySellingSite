@@ -18,7 +18,10 @@ import lombok.Setter;
 @Table(name = "users")
 public class Users extends BaseEntity {
 	@Column(length = 100)
-	private String name;
+	private String fname;
+	
+	@Column(length = 100)
+	private String lname;
 	
 	@Column(length = 100)
 	@Email
@@ -33,6 +36,8 @@ public class Users extends BaseEntity {
 	@OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "Address")
 	private Address address;
+	
+	private boolean isAdmin;
 	
 	@Lob
 	private Byte[] profilePicture;
