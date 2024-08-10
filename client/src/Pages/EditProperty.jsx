@@ -2,6 +2,7 @@ import Footer from "../Components/Footer";
 import Header from "../Components/Header";
 import { useEffect, useState } from "react"
 import { toast } from "react-toastify"
+import TagInput from "../Components/TagHandling";
 
 function EditProperty() {
   const [Title, setTitle] = useState("Testing Title")
@@ -16,7 +17,16 @@ function EditProperty() {
   const [Bedroom, setBedroom] = useState("2")
   const [Bathroom, setBathroom] = useState("2")
   const [Price, setPrice] = useState("2000000")
+  const [selectedTags, setSelectedTags] = useState(["1BHK","Bunglow"]);
 
+  const handleTagsChange = (tags) => {
+    setSelectedTags(tags);
+  };
+
+  //Send to Backend to Get the Available Tags
+  const availableTags = [
+    '1BHK', '2BHK', '3BHK', 'Bunglow', 'Villa', 'Hill-Side',
+  ];
   const fetchData = async () => {
     const id = 1
     // const result = await GetSpecficPropertyId(id) //Backend Integration
@@ -172,6 +182,14 @@ function EditProperty() {
                   <div className="col me-3">
                     <div className="form-label">Property Area: </div>
                     <input type="number" placeholder="Enter Area" value={Area} name="Area" onChange={(e) => { setArea(e.target.value) }} className="form-control mb-5" />
+                  </div>
+                </div>
+                <div className="row">
+                  <div className="col me-5 mb-5">
+                    <div className="form-label">Property Tags: </div>
+                    <div>
+                      <TagInput availableTags={availableTags} onTagsChange={handleTagsChange} SetTags={selectedTags} />
+                    </div>
                   </div>
                 </div>
                 <div className="row">
