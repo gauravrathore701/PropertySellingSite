@@ -5,15 +5,16 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 @NoArgsConstructor
 @Getter
 @Setter
-@ToString
-public class TagsDTOResponse {
+public class OrdersDTORequest {
+
+
 	@NotBlank
-	private String tagName;
+	private Long userid;
+
 	@NotBlank
-	private String tagDesc;
+	private Long propertyid;
 }

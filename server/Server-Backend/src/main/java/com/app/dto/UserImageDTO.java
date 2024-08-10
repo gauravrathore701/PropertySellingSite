@@ -1,17 +1,15 @@
 package com.app.dto;
 
 
+import org.springframework.web.multipart.MultipartFile;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 @NoArgsConstructor
 @Getter
 @Setter
-@ToString
-public class ImageDTOResponse {
-	private Long id;
-	private String imageLink;
+public class UserImageDTO {
+	private MultipartFile[] imageLink;
 }

@@ -6,12 +6,15 @@ import jakarta.validation.Valid;
 
 import com.app.dto.ImageDTORequest;
 import com.app.dto.ImageDTOResponse;
+import com.app.dto.UserImageDTO;
 
 public interface ImageService {
 	ImageDTOResponse getImage(Long imageId);
 	List<ImageDTOResponse> getAll();
 
-	String addNewImage(@Valid ImageDTORequest imageBody, Long propertyId);
+	String addNewImageProperty(@Valid ImageDTORequest imageBody, Long propertyId);
+	
+	String addNewImageUser(@Valid ImageDTORequest imageBody, Long userId);
 
 	String DeletePropertyImages(Long imageId);
 	

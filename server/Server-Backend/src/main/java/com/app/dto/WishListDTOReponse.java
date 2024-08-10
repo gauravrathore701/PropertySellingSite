@@ -11,9 +11,16 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class TagsDTOResponse {
+public class WishListDTOReponse {
+
 	@NotBlank
-	private String tagName;
+	private Long id;
+
 	@NotBlank
-	private String tagDesc;
+	private Long userid;
+
+	@NotBlank
+	private Long property;
+	
+	private boolean onCart;
 }

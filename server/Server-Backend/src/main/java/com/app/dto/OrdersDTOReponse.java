@@ -11,9 +11,18 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class TagsDTOResponse {
+public class OrdersDTOReponse {
+
 	@NotBlank
-	private String tagName;
+	private Long id;
+
 	@NotBlank
-	private String tagDesc;
+	private Long userId;
+
+	@NotBlank
+	private Long propertyId;
+
+	private boolean orderCompleted;
+
+	private float amount;
 }

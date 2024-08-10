@@ -17,10 +17,13 @@ import org.springframework.web.multipart.MultipartFile;
 import com.app.custom_exceptions.ResourceNotFoundException;
 import com.app.dao.ImagesDao;
 import com.app.dao.PropertyDao;
+import com.app.dao.UserDao;
 import com.app.dto.ImageDTORequest;
 import com.app.dto.ImageDTOResponse;
+import com.app.dto.UserImageDTO;
 import com.app.entities.Images;
 import com.app.entities.Property;
+import com.app.entities.Users;
 
 @Service
 @Transactional
@@ -31,6 +34,9 @@ public class ImageServiceImpl implements ImageService {
 
 	@Autowired 
 	private PropertyDao propertyDao;
+	
+	@Autowired 
+	private UserDao userDao;
 
 	@Autowired 
 	private ModelMapper mapper;
@@ -53,7 +59,7 @@ public class ImageServiceImpl implements ImageService {
 	}
 
 	@Override
-	public String addNewImage(@Valid ImageDTORequest imageBody, Long propertyId) {
+	public String addNewImageProperty(@Valid ImageDTORequest imageBody, Long propertyId) {
 		Property p= propertyDao.findById(propertyId).orElseThrow((()->new ResourceNotFoundException("Invalid Property Id Given")));
 		MultipartFile[] images= imageBody.getImageLink();
 		for (MultipartFile image : images) {
@@ -90,6 +96,20 @@ public class ImageServiceImpl implements ImageService {
 			imgDList.add(img);
 		}
 		return imgDList;
+	}
+	@Override
+	public String addNewImageUser(@Valid ImageDTORequest imageBody, Long userId) {
+		Users u= userDao.findById(userId).orElseThrow((()->new ResourceNotFoundException("Invalid User Id Given")));
+		MultipartFile[] images= imageBody.getImageLink();
+		for (MultipartFile image : images) {
+			try {
+				u.setProfilePicture(image.getBytes());
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return "Image Added Successfully";
 	}
 
 }

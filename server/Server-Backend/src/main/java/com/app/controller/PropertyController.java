@@ -47,7 +47,7 @@ public class PropertyController {
 	@GetMapping("/type/{type}")
 	@Operation(summary = "To Get Property by Type")
 	public ResponseEntity<?> getSpecificType(@PathVariable String type){
-		return ResponseEntity.ok(PropertyService.SeachProductByType(type));
+		return ResponseEntity.ok(PropertyService.SeachProductByType(type.toUpperCase()));
 	}
 	
 	@GetMapping("/user/{userId}")

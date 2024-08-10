@@ -13,10 +13,12 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @NoArgsConstructor
 @Getter
 @Setter
+@ToString(exclude = "property")
 public class TagsDTORequest {
 	@NotBlank
 	private String tagName;
