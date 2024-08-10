@@ -131,6 +131,6 @@ dist
 /.metadata/
 
 #Spring Boot 
-/.metadata/
-/src/main/resources/static/
+\.metadata\
+\src\main\resources\static\
 
