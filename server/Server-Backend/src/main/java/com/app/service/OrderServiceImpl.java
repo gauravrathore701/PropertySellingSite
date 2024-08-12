@@ -7,12 +7,14 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.app.controller.EmailController;
 import com.app.custom_exceptions.ResourceNotFoundException;
 import com.app.dao.OrdersDao;
 import com.app.dao.PropertyDao;
 import com.app.dao.UserDao;
 import com.app.dto.OrdersDTOReponse;
 import com.app.dto.OrdersDTORequest;
+import com.app.email.EmailDetails;
 import com.app.entities.Orders;
 import com.app.entities.Property;
 import com.app.entities.Users;
@@ -152,7 +154,11 @@ public class OrderServiceImpl implements OrderService {
 		}
 		else
 			order.setOrderComplete(true);
-		return "Order Status Changed";
+		EmailController ec=new EmailController();
+		Users u=order.getBuyer();
+		String body="Hi "+u.getFname()+" "+u.getLname()+",\n\n Your order has completed Processing for Amount:"+order.getAmount()+". You can see your Order Under Orders Page \n\n Thanks and Regards\n EverGreenEstate Team";
+		ec.sendMail(new EmailDetails(u.getEmail(),body, "Order No:"+order.getId()+": Order Completion Confirmation", null));
+		return "Order Status Changed to Completed and Confirmation Email Sent";
 	}
 
 }

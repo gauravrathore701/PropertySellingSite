@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.transaction.Transactional;
+
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +13,7 @@ import com.app.custom_exceptions.ResourceNotFoundException;
 import com.app.dao.PropertyDao;
 import com.app.dao.UserDao;
 import com.app.dao.WishlistDao;
+import com.app.dto.PropertyResponse;
 import com.app.dto.WishListDTOReponse;
 import com.app.dto.WishListDTORequest;
 import com.app.entities.Property;
@@ -29,6 +32,9 @@ public class WishlistServiceImpl implements WishlistService {
 
 	@Autowired 
 	private PropertyDao propertyDao;
+	
+	@Autowired 
+	private ModelMapper mapper;
 
 	@Override
 	public List<WishListDTOReponse> getAllWishlist() {
@@ -39,7 +45,7 @@ public class WishlistServiceImpl implements WishlistService {
 				WishListDTOReponse wishDTO=new WishListDTOReponse();
 				wishDTO.setId(wish.getId());
 				wishDTO.setUserid(wish.getUser().getId());
-				wishDTO.setProperty(wish.getProperty().getId());
+				wishDTO.setProperty(mapper.map(wish.getProperty(),PropertyResponse.class));
 				wishDTO.setOnCart(wish.isOnCart());
 				wishlistDTO.add(wishDTO);
 			}
@@ -56,7 +62,7 @@ public class WishlistServiceImpl implements WishlistService {
 				WishListDTOReponse wishDTO=new WishListDTOReponse();
 				wishDTO.setId(wish.getId());
 				wishDTO.setUserid(wish.getUser().getId());
-				wishDTO.setProperty(wish.getProperty().getId());
+				wishDTO.setProperty(mapper.map(wish.getProperty(),PropertyResponse.class));
 				wishDTO.setOnCart(wish.isOnCart());
 				wishlistDTO.add(wishDTO);
 			}
@@ -74,7 +80,7 @@ public class WishlistServiceImpl implements WishlistService {
 				WishListDTOReponse wishDTO=new WishListDTOReponse();
 				wishDTO.setId(wish.getId());
 				wishDTO.setUserid(wish.getUser().getId());
-				wishDTO.setProperty(wish.getProperty().getId());
+				wishDTO.setProperty(mapper.map(wish.getProperty(),PropertyResponse.class));
 				wishDTO.setOnCart(wish.isOnCart());
 				wishlistDTO.add(wishDTO);
 			}
@@ -92,7 +98,7 @@ public class WishlistServiceImpl implements WishlistService {
 				WishListDTOReponse wishDTO=new WishListDTOReponse();
 				wishDTO.setId(wish.getId());
 				wishDTO.setUserid(wish.getUser().getId());
-				wishDTO.setProperty(wish.getProperty().getId());
+				wishDTO.setProperty(mapper.map(wish.getProperty(),PropertyResponse.class));
 				wishDTO.setOnCart(wish.isOnCart());
 				wishlistDTO.add(wishDTO);
 			}

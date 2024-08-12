@@ -1,10 +1,38 @@
+import { toast } from "react-toastify";
 import Footer from "../Components/Footer";
 import Header from "../Components/Header";
 import ProductCard from "../Components/ProductCard";
+import { GetSpecficPropertyUser } from "../services/property";
+import { useEffect, useState } from "react";
 
 function MyProperities() {
-  const arr = [1, 2, 3, 4];
+  const [Properities, SetProperities] = useState([]);
 
+  const fetchData = async () => {
+    const id = 9;
+    try {
+      const result = await GetSpecficPropertyUser(id); // Backend Integration
+      if (result.status == 200) {
+        const data = result.data;
+        return data;
+      } else {
+        toast.warning('No Property Found');
+        return null;
+      }
+    } catch (error) {
+      console.error('Error fetching property data:', error);
+      toast.error('Error fetching property data');
+      return null;
+    }
+  };
+
+  useEffect(() => {
+    (async () => {
+      const prop = await fetchData()
+      console.log(prop)
+      SetProperities([...prop])
+    })();
+  }, []);
   return (
     <div>
       <Header />
@@ -16,10 +44,10 @@ function MyProperities() {
           </a>
         </div>
         <div className="row">
-          {arr.map((element) => {
+          {Properities.map((property) => {
             return (
               <div className="col m-4">
-                <ProductCard page={{ name: "Edit-Prop" }} />
+                <ProductCard page={{ name: "Edit-Prop" }} id={property.id} title={property.title} description={property.description} price={property.price} owner={property.owner} />
               </div>
             );
           })}

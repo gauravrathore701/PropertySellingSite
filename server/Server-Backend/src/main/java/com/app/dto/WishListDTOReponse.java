@@ -20,7 +20,7 @@ public class WishListDTOReponse {
 	private Long userid;
 
 	@NotBlank
-	private Long property;
+	private PropertyResponse property;
 	
 	private boolean onCart;
 }

@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -40,16 +41,24 @@ public class UserController {
 	@PostMapping("/admin-add")
 	@Operation(summary = "To Add new Admin")
 	public ResponseEntity<?> addNewAdmin(@RequestBody @Valid UserDTO request){
-		return ResponseEntity.ok(new ApiResponse(userService.addNewAdmin(request)));
-	}
-	
-	@GetMapping("/list")
-	@Operation(summary = "To getAll Users")
-	public ResponseEntity<?> getAll(){
-		return ResponseEntity.ok(userService.getAll());
-	}
-	
-	@PostMapping("/login")
+			return ResponseEntity.ok(new ApiResponse(userService.addNewAdmin(request)));
+		}
+		
+		
+		@GetMapping("/{userId}")
+		@Operation(summary = "To get Specific User")
+		public ResponseEntity<?> getSpecific(@PathVariable Long userId ){
+			return ResponseEntity.ok(userService.getSpecific(userId));
+		}
+		
+		
+		@GetMapping("/list")
+		@Operation(summary = "To getAll Users")
+		public ResponseEntity<?> getAll(){
+			return ResponseEntity.ok(userService.getAll());
+		}
+		
+		@PostMapping("/login")
 	@Operation(summary = "To Login Functionality")
 	public ResponseEntity<?> userLogin(@RequestBody @Valid LoginDTO request){
 		return ResponseEntity.ok(userService.getUserByEmail(request));

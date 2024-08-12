@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.app.custom_exceptions.ResourceNotFoundException;
 import com.app.dao.TagDao;
 import com.app.dto.PropertyResponse;
+import com.app.dto.TagsAddDTORequest;
 import com.app.dto.TagsDTOResponse;
 import com.app.entities.Property;
 import com.app.entities.Tags;
@@ -47,5 +48,16 @@ public class TagsServiceImpl implements TagsService {
 			props.add(prop);
 		}
 		return props;
+	}
+
+	@Override
+	public String AddTags(TagsAddDTORequest request) {
+		Tags tags=tagDao.findByTagName(request.getTagName()).orElse(null);
+		if(tags!=null) {
+			throw new ResourceNotFoundException("Tag Already Exists in System");
+		}
+		tags=mapper.map(request, Tags.class);
+		tagDao.save(tags);
+		return "Added New Tag";
 	}
 }

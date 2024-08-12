@@ -31,8 +31,8 @@ function App() {
         <Route path="/register-page" element={<RegisterPage />} />
         <Route path="/edit-page" element={<EditProfile />} />
         <Route path="/contact-us" element={<ContactUs />} />
-        <Route path="/edit-property" element={<EditProperty />} />
-        <Route path="/add-property" element={<AddProperty />} />
+        <Route path="/edit-property/:propid" element={<EditProperty />} />
+        <Route path="/add-property/:userid" element={<AddProperty />} />
         <Route
           path="/product-card"
           element={<ProductCard page={{ name: "wishlist" }} />}
@@ -43,7 +43,7 @@ function App() {
         />
         <Route path="/wishlist" element={<WishlistPage />} />
         <Route path="/Properities" element={<MyProperities />} />
-        <Route path="/individual-property" element={<IndividualProperties />} />
+        <Route path="/individual-property/:propid" element={<IndividualProperties/>} />
         <Route path="/forgot-password" element={<ResetPasswordPage />} />
         <Route path="/checkout" element={<Checkout />} />
       </Routes>

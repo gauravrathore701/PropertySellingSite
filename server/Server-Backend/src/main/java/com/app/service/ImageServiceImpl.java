@@ -64,6 +64,7 @@ public class ImageServiceImpl implements ImageService {
 		MultipartFile[] images= imageBody.getImageLink();
 		for (MultipartFile image : images) {
 			Images img=mapper.map(image, Images.class);
+			img.setName(image.getOriginalFilename());
 			img.setProperty(p);
 			String link ="src/main/resources/static/"+image.getOriginalFilename();
 			try {

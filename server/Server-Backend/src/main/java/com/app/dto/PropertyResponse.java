@@ -20,13 +20,15 @@ public class PropertyResponse {
 	@NotBlank
 	private String title;
 	private AddressDTO address;
-	private Set<TagsDTOResponse> tags;
+	private Set<TagsDTORequest> tags;
 	@NotBlank
 	private String propertyType;
 	private float price;
 	private float propertyArea;
 	private int bedrooms;
 	private int bathrooms;
+	@NotBlank
+	private String owner;
 	private String description;
 	private Boolean isSold;
 	private Boolean isDeleted;

@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.app.dto.LoginDTO;
 import com.app.dto.UserDTO;
+import com.app.dto.UserDTOResponse;
 import com.app.dto.UserPasswordChangeDTO;
 import com.app.dto.UserUpdateDTO;
 import com.app.entities.Users;
@@ -15,10 +16,12 @@ public interface UserService {
 	
 	String addNewAdmin(UserDTO request);
 	
-	UserDTO getUserByEmail(LoginDTO request);
+	UserDTOResponse getUserByEmail(LoginDTO request);
 	
 	String UpdateProfile(UserUpdateDTO request);
 	
 	String UpdatePassword(UserPasswordChangeDTO request);
+
+	UserDTO getSpecific(Long id);
 	
 }

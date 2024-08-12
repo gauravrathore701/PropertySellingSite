@@ -12,6 +12,7 @@ import com.app.custom_exceptions.ResourceNotFoundException;
 import com.app.dao.UserDao;
 import com.app.dto.LoginDTO;
 import com.app.dto.UserDTO;
+import com.app.dto.UserDTOResponse;
 import com.app.dto.UserPasswordChangeDTO;
 import com.app.dto.UserUpdateDTO;
 import com.app.entities.Address;
@@ -36,15 +37,21 @@ public class UserServiceImpl implements UserService {
 		return "User Added";
 	}
 	@Override
+	public UserDTO getSpecific(Long id) {
+		Users u=userDao.findById(id).orElseThrow(()->new ResourceNotFoundException("Invalid User"));
+		return mapper.map(u, UserDTO.class);
+	}
+	
+	@Override
 	public List<Users> getAll() {
 		return userDao.findAll();
 	}
 	@Override
-	public UserDTO getUserByEmail(LoginDTO request) {
+	public UserDTOResponse getUserByEmail(LoginDTO request) {
 		Users u=userDao.findByEmail(request.getEmail());
 		if(u==null || !u.getPassword().equals(request.getPassword()))
 			throw new ResourceNotFoundException("Invalid User Credentials");
-		return mapper.map(u, UserDTO.class);
+		return mapper.map(u, UserDTOResponse.class);
 	}
 	@Override
 	public String addNewAdmin(UserDTO request) {

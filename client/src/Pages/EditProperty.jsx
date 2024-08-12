@@ -3,51 +3,78 @@ import Header from "../Components/Header";
 import { useEffect, useState } from "react"
 import { toast } from "react-toastify"
 import TagInput from "../Components/TagHandling";
+import { addPropertyImages, EditSpecficPropertyId, GetSpecficPropertyId } from "../services/property";
+import { useNavigate, useParams } from "react-router-dom";
 
 function EditProperty() {
-  const [Title, setTitle] = useState("Testing Title")
-  const [Descpt, setDescpt] = useState("Testing Description")
-  const [Address, setAddress] = useState("Pune")
-  const [State, setState] = useState("Maharashtra")
-  const [District, setDistrict] = useState("Pune")
-  const [City, setCity] = useState("Pune")
-  const [Pincode, setPincode] = useState("411033")
-  const [Type, setType] = useState("Apartment")
-  const [Area, setArea] = useState("5000")
-  const [Bedroom, setBedroom] = useState("2")
-  const [Bathroom, setBathroom] = useState("2")
-  const [Price, setPrice] = useState("2000000")
-  const [selectedTags, setSelectedTags] = useState(["1BHK","Bunglow"]);
+  const { propid } = useParams();
+  const [TagList, setTagList] = useState([]);
+  const [Title, setTitle] = useState("");
+  const [Descpt, setDescpt] = useState("");
+  const [AddressLine1, setAddressLine1] = useState("");
+  const [AddressLine2, setAddressLine2] = useState("");
+  const [State, setState] = useState("");
+  const [District, setDistrict] = useState("");
+  const [City, setCity] = useState("");
+  const [Pincode, setPincode] = useState("");
+  const [Type, setType] = useState("");
+  const [Area, setArea] = useState("");
+  const [Bedroom, setBedroom] = useState("");
+  const [Bathroom, setBathroom] = useState("");
+  const [Price, setPrice] = useState("");
+  // const [Images, setImages] = useState([]);
+  const [selectedTags, setSelectedTags] = useState([]);
 
+  const navigate= useNavigate()
   const handleTagsChange = (tags) => {
-    setSelectedTags(tags);
+    // const newTags = selectedTags;
+    const newTags = new Set(tags)
+    console.log(tags+"-----"+selectedTags+"-----"+newTags)
+    tags.map((e)=>{
+        newTags.add(e)
+    })
+    setTagList([...newTags]);
+    setSelectedTags([...newTags]);
+    console.log("After Adding: " + TagList)
   };
 
   //Send to Backend to Get the Available Tags
   const availableTags = [
-    '1BHK', '2BHK', '3BHK', 'Bunglow', 'Villa', 'Hill-Side',
+    '1BHK', '2BHK', '3BHK', 'Bunglow', 'Villa', 'Hill-Side'
   ];
+
   const fetchData = async () => {
-    const id = 1
-    // const result = await GetSpecficPropertyId(id) //Backend Integration
-    // if (result['Status'] === 'success') {
-    //   if (result['data'].length !== 0) {
-    //     const data = result['data']
-    //     return data[0]
-    //   }
-    //   else {
-    //     toast.warning(`No Such Blog Found`)
-    //   }
-    // }
-  }
+    try {
+      const result = await GetSpecficPropertyId(propid); // Backend Integration
+      console.log(result)
+      if (result.status == 200) {
+        const data = result.data;
+        return data;
+      } else {
+        toast.warning('No Such Property Found');
+        return null;
+      }
+    } catch (error) {
+      console.error('Error fetching property data:', error);
+      toast.error('Error fetching property data');
+      return null;
+    }
+  };
   const editProp = async () => {
+    console.log("Pre Edit Tags:" + TagList)
+    const tagsDTORequest = TagList.map(tag => ({
+      tagName: tag
+    }));
+    console.log("Pre Edit Tags:" + tagsDTORequest)
     if (Title.length === 0) {
       toast.warning("Please Enter Property Title")
     }
     else if (Descpt.length === 0) {
       toast.warning("Please Enter Property Description")
-    } else if (Address.length === 0) {
-      toast.warning("Please Enter Property Address")
+    } else if (AddressLine1.length === 0) {
+      toast.warning("Please Enter Property Address Line 1");
+    } else if (AddressLine2.length === 0) {
+      toast.warning("Please Enter Property Address Line 2");
     } else if (Descpt.length === 0) {
       toast.warning("Please Enter Property Description")
     } else if (State.length === 0) {
@@ -70,39 +97,66 @@ function EditProperty() {
       toast.warning("Please Enter Property Price")
     }
     else {
-      const id = 1
+      const id = 4
+      const propertyRequest = {
+        title: Title,
+        description: Descpt,
+        price: Price,
+        propertyArea: Area,
+        propertyType: Type,
+        bedrooms: Bedroom,
+        washrooms: Bathroom,
+        address: {
+          addLine1: AddressLine1,
+          addLine2: AddressLine1,
+          city: City,
+          state: State,
+          district: District,
+          pincode: Pincode,
+        },
+        tags: tagsDTORequest
+      };
+      Image = []
+      const files = document.getElementById("formFileMultiple");
+      for (let i = 0; i < files.files.length; i++) {
+        Image.push(files.files[i]);
+      }
+      const result = await EditSpecficPropertyId(propertyRequest, propid)
+      console.log(result)
       // const result = await EditSpecficPropertyId(id, Title, Address, City, State, District, Pincode, Type, Price, Area, Bedroom, Bathroom, Descpt)
-      // if (result['Status'] === 'success') {
-      //   if (result['data'].length !== 0) {
-      //     toast.success(`Property Ediited-1`)
-      //   }
-      //   else {
-      //     toast.warning(`Property not Edited-2`)
-      //   }
-      // }
-      // else {
-      //   toast.warning(`Property not Editted-3`)
-      // }
+      if (result.message === 'Update Done') {
+        console.log("Image::"+Image)
+        const ImgResult=await addPropertyImages(Image,propid)
+        console.log(ImgResult)
+        toast.success(result.message + " Successfully")
+        navigate("/dashboard")
+      }
+      else {
+        toast.warning(`Facing Some Issues`)
+      }
     }
   }
   useEffect(() => {
     (async () => {
-      // const prop = await fetchData()
-      // const { title, address, city, state, district, pincode, propertyType, price, PropertyArea, bedrooms, bathrooms, description } = prop
-      // setTitle(title)
-      // setAddress(address)
-      // setCity(city)
-      // setState(state)
-      // setDistrict(district)
-      // setType(propertyType)
-      // setPincode(pincode)
-      // setPrice(price)
-      // setArea(PropertyArea)
-      // setBedroom(bedrooms)
-      // setBathroom(bathrooms)
-      // setDescpt(description)
-    })
-      ();
+      const prop = await fetchData()
+      const { title, address, propertyType, tags, price, propertyArea, bedrooms, bathrooms, description } = prop
+      setTitle(title);
+      setAddressLine1(address.addLine1);
+      setAddressLine2(address.addLine2);
+      setCity(address.city);
+      setState(address.state);
+      setDistrict(address.district);
+      setPincode(address.pincode);
+      const tagsArray = tags.map(tag => tag.tagName); // Update the state asynchronously
+      setSelectedTags(tagsArray);
+      setType(propertyType);
+      setPrice(price);
+      setArea(propertyArea);
+      setBedroom(bedrooms);
+      setBathroom(bathrooms);
+      setDescpt(description);
+      setTagList(tagsArray)
+    })();
   }, []);
   return (
     <div>
@@ -136,8 +190,16 @@ function EditProperty() {
               <div className="row">
                 <div className="col">
                   <div className="mb-3">
-                    <div className="form-label mt-5">Address: </div>
-                    <div><textarea type="text" placeholder="Enter Address" name="Address" value={Address} onChange={(e) => { setAddress(e.target.value) }} className="form-control mb-3" /></div>
+                    <div className="form-label mt-5">Address Line-1: </div>
+                    <div><textarea type="text" placeholder="Enter Address" name="Address" value={AddressLine1} onChange={(e) => { setAddressLine1(e.target.value) }} className="form-control mb-3" /></div>
+                  </div>
+                </div>
+              </div>
+              <div className="row">
+                <div className="col">
+                  <div className="mb-3">
+                    <div className="form-label mt-5">Address Line-2: </div>
+                    <div><textarea type="text" placeholder="Enter Address" name="Address" value={AddressLine2} onChange={(e) => { setAddressLine2(e.target.value) }} className="form-control mb-3" /></div>
                   </div>
                 </div>
               </div>
@@ -187,8 +249,9 @@ function EditProperty() {
                 <div className="row">
                   <div className="col me-5 mb-5">
                     <div className="form-label">Property Tags: </div>
+                    <div>Already Added Tags: {TagList.map((tag) => tag + ",")}</div>
                     <div>
-                      <TagInput availableTags={availableTags} onTagsChange={handleTagsChange} SetTags={selectedTags} />
+                      <TagInput availableTags={availableTags} onTagsChange={handleTagsChange} SelectedTags={TagList} />
                     </div>
                   </div>
                 </div>
@@ -204,7 +267,7 @@ function EditProperty() {
                 </div>
                 <div className="row">
                   <div className="col me-5">
-                    <div className="form-label">Property Price: </div>
+                    <div className="form-label">Property Price(in INR): </div>
                     <input type="number" placeholder="Enter Price" name="Price" value={Price} onChange={(e) => { setPrice(e.target.value) }} className="form-control mb-5" />
                   </div>
                   <div className="col me-3">

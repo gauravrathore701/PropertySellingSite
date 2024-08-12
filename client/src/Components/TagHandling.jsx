@@ -1,9 +1,13 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
-const TagInput = ({ availableTags, onTagsChange,SetTags}) => {
-  const [tags, setTags] = useState(SetTags);
+const TagInput = ({ availableTags, onTagsChange, SelectedTags }) => {
+  const [tags, setTags] = useState([]);
   const [input, setInput] = useState('');
   const [suggestions, setSuggestions] = useState([]);
+  useEffect(() => {
+      console.log("In Tag")
+      setTags([...SelectedTags])
+  },[SelectedTags])
 
   const handleInputChange = (e) => {
     const value = e.target.value;
@@ -46,7 +50,6 @@ const TagInput = ({ availableTags, onTagsChange,SetTags}) => {
     setTags(newTags);
     onTagsChange(newTags);  // Send updated tags to the parent
   };
-
   return (
     <div className="tag-input-container">
       <ul className="tags">

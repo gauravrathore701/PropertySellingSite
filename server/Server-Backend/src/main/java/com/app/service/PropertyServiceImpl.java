@@ -3,13 +3,17 @@ package com.app.service;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
-
+import com.app.dto.PropertyResponsePaginated;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.app.custom_exceptions.ResourceNotFoundException;
@@ -46,7 +50,7 @@ public class PropertyServiceImpl implements PropertyService {
 	private ModelMapper mapper;
 
 	@Override
-	public String addNewProperty(@Valid PropertyRequest request, Long id) {
+	public PropertyResponse addNewProperty(@Valid PropertyRequest request, Long id) {
 		System.out.println(request);
 		Property p= mapper.map(request, Property.class);
 		Set<TagsDTORequest> tagDTO=request.getTags();
@@ -86,27 +90,43 @@ public class PropertyServiceImpl implements PropertyService {
 		}
 		System.out.println("Out Loop");
 		p.setTags(tags);
-		propertyDao.save(p);
-		return "Property Added";
+		Property savedProp=propertyDao.save(p);
+		return mapper.map(savedProp, PropertyResponse.class);
 	}
 
 	@Override
-	public List<PropertyResponse> getAll() {
-		List<Property> plist = propertyDao.findAll();
+	public PropertyResponsePaginated getAll(int page,int size) {
+		Pageable pageable = PageRequest.of(page, size);
+		Page<Property> propertyPage = propertyDao.findAll(pageable);
+		List<Property> plist = propertyDao.findAll(pageable).getContent();
 		List<PropertyResponse> prlist= new ArrayList<PropertyResponse>();
 		for (Property property : plist) {
 			PropertyResponse pr= mapper.map(property, PropertyResponse.class);
 			prlist.add(pr);
 		}
-		return prlist; 
+		int totalPages = propertyPage.getTotalPages();
+		return new PropertyResponsePaginated(prlist, totalPages);
+	}
+	
+	public PropertyResponse getById(Long id) {
+		Property property=propertyDao.findById(id).orElseThrow(()->new ResourceNotFoundException("Invalid ID"));
+		PropertyResponse pr=mapper.map(property, PropertyResponse.class);
+		pr.setOwner(property.getUser().getFname()+" "+property.getUser().getLname());
+		return pr;
 	}
 
 	@Override
-	public String UpdatePropertyDetails(PropertyRequest request, Long id) {
+	public String updatePropertyDetails(PropertyRequest request, Long id) {
 		Property p=propertyDao.findById(id).orElseThrow(()->new ResourceNotFoundException("Invalid ID"));
 		Address a= addressDao.findByProperty(p);
 		Set<TagsDTORequest> tagDTO=request.getTags();
-		Set<Tags> tags = new HashSet<>();
+		Set<Tags> tags = p.getTags();
+		// Removing Existing Tags from Property & Vice Versa
+		for (Tags tags2 : tags) {
+			Optional<Tags> t=tagDao.findByTagName(tags2.getTagName());
+			t.get().getProperty().remove(p);
+		}
+		p.setTags(new HashSet<Tags>());
 		a.setAddLine1(request.getAddress().getAddLine1());
 		a.setAddLine2(request.getAddress().getAddLine2());
 		a.setCity(request.getAddress().getCity());
@@ -149,7 +169,7 @@ public class PropertyServiceImpl implements PropertyService {
 	}
 
 	@Override
-	public String SellingProperty(PropertyRequest request, Long Propertyid) {
+	public String sellingProperty(PropertyRequest request, Long Propertyid) {
 		Property p=propertyDao.findById(Propertyid).orElseThrow(()->new ResourceNotFoundException("Invalid ID"));
 		p.setIsSold(true);	
 		propertyDao.save(p);
@@ -157,7 +177,7 @@ public class PropertyServiceImpl implements PropertyService {
 	}
 
 	@Override
-	public List<PropertyResponse> SeachProductByType(String type) {
+	public List<PropertyResponse> seachProductByType(String type) {
 		List<Property> plist= propertyDao.findByPropertyType(PropertyType.valueOf(type));
 		List<PropertyResponse> prlist= new ArrayList<PropertyResponse>();
 		for (Property property : plist) {
@@ -168,18 +188,19 @@ public class PropertyServiceImpl implements PropertyService {
 	}
 
 	@Override
-	public List<PropertyResponse> SeachProductByUser(Long Userid) {
+	public List<PropertyResponse> seachProductByUser(Long Userid) {
 		Users u=userDao.findById(Userid).orElseThrow(()->new ResourceNotFoundException("Invalid User ID"));
 		List<Property> plist= propertyDao.findByUser(u);
 		List<PropertyResponse> prlist= new ArrayList<PropertyResponse>();
 		for (Property property : plist) {
 			PropertyResponse pr= mapper.map(property, PropertyResponse.class);
+			pr.setOwner(property.getUser().getFname()+" "+property.getUser().getLname());
 			prlist.add(pr);
 		}
 		return prlist; 
 	}
 
-	public String DeleteProperty(Long id) {
+	public String deleteProperty(Long id) {
 		Property p=propertyDao.findById(id).orElseThrow(()->new ResourceNotFoundException("Invalid ID"));
 		p.setIsDeleted(true);
 		propertyDao.save(p);

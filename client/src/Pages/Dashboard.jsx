@@ -1,12 +1,42 @@
+import { useEffect, useState } from "react";
 import userImage from "../Assets/icons/userImage.png";
 import Footer from "../Components/Footer";
 import Header from "../Components/Header";
-import PropertyCard from "../Components/ProductCard";
+import ProductCard from "../Components/ProductCard";
+import { GetSpecficPropertyUser } from "../services/property";
+import { toast } from "react-toastify";
 function Dashboard() {
-  const user = {};
+  const [Properities, SetProperities] = useState([]);
+  const userid = sessionStorage.getItem("userid");
+  const username = sessionStorage.getItem("username");
+  const userFullName = sessionStorage.getItem("userFullName");
+  const userEmail = sessionStorage.getItem("userEmail");
+  const userPhone = sessionStorage.getItem("userPhone");
+  const fetchData = async () => {
+    try {
+      const result = await GetSpecficPropertyUser(userid); // Backend Integration
+      if (result.status == 200) {
+        const data = result.data;
+        return data;
+      } else {
+        toast.warning('No Property Found');
+        return [];
+      }
+    } catch (error) {
+      console.error('Error fetching property data:', error);
+      toast.error('Error fetching property data');
+      return [];
+    }
+  };
 
-  const arr = [1, 2, 3, 4, 5, 6];
-
+  useEffect(() => {
+    (async () => {
+      const prop = await fetchData()
+      console.log(prop)
+      SetProperities([...prop])
+    })();
+  }, []);
+  
   return (
     <div>
       <Header />
@@ -26,7 +56,7 @@ function Dashboard() {
                 </div>
                 <div className="col">
                   <span className="tw-text-start tw-text-xl tw-font-light tw-text-gray-500">
-                    TestUsername
+                  {username} {/* TestUsername */}
                   </span>
                 </div>
                 <div className="col-sm-0 col-md-4 col-lg-4"></div>
@@ -41,7 +71,7 @@ function Dashboard() {
                 </div>
                 <div className="col">
                   <span className="tw-text-start tw-text-xl tw-font-light tw-text-gray-500">
-                    Test name
+                   {userFullName} {/* Test name */}
                   </span>
                 </div>
                 <div className="col-sm-1 col-md-4 col-lg-4"></div>
@@ -56,7 +86,7 @@ function Dashboard() {
                 </div>
                 <div className="col">
                   <span className="tw-text-start tw-text-xl tw-font-light tw-text-gray-500">
-                    test@gmail.com
+                   {userEmail} {/* test@gmail.com */}
                   </span>
                 </div>
                 <div className="col-sm-1 col-md-4 col-lg-4"></div>
@@ -71,7 +101,7 @@ function Dashboard() {
                 </div>
                 <div className="col">
                   <span className="tw-text-start tw-text-xl tw-font-light tw-text-gray-500">
-                    9988776655
+                   {userPhone} {/* 9988776655 */}
                   </span>
                 </div>
                 <div className="col-sm-1 col-md-4 col-lg-4"></div>
@@ -127,15 +157,15 @@ function Dashboard() {
           <h1 className=" mt-3">My Properties</h1>
           <div className="container">
             <div className="d-grid gap-2 d-md-flex justify-content-md-end mb-3 me-5">
-              <a href="/add-property" class="btn btn-success me-5">
+              <a href={`/add-property/${userid}`} class="btn btn-success me-5">
                 Add New Property
               </a>
             </div>
             <div className="row">
-              {arr.map((element) => {
+              {Properities.length==0?<h1 className="centered mt-3">User Has No Added Properties</h1>:Properities.map((property) => {
                 return (
                   <div className="col m-4">
-                    <PropertyCard page={{ name: "Edit-Prop" }} />
+                    <ProductCard page={{ name: "Edit-Prop" }} id={property.id} title={property.title} description={property.description} price={property.price} owner={property.owner} />
                   </div>
                 );
               })}
