@@ -31,6 +31,10 @@ public class UserUpdateDTO {
 	
 	@NotBlank
 	private String username;
-	private AddressDTO address;
+	@NotBlank
+	private String city;
+	
+	@NotBlank
+	private String state;
 	private LocalDate dob;
 }

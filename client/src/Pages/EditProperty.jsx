@@ -3,7 +3,7 @@ import Header from "../Components/Header";
 import { useEffect, useState } from "react"
 import { toast } from "react-toastify"
 import TagInput from "../Components/TagHandling";
-import { addPropertyImages, EditSpecficPropertyId, GetSpecficPropertyId } from "../services/property";
+import { addPropertyImages, DeletePropertyImage, EditSpecficPropertyId, getPropertyImages, GetSpecficPropertyId } from "../services/property";
 import { useNavigate, useParams } from "react-router-dom";
 
 function EditProperty() {
@@ -24,14 +24,15 @@ function EditProperty() {
   const [Price, setPrice] = useState("");
   // const [Images, setImages] = useState([]);
   const [selectedTags, setSelectedTags] = useState([]);
-
-  const navigate= useNavigate()
+  const [Images, setImages] = useState([]);
+  var images = []
+  const navigate = useNavigate()
   const handleTagsChange = (tags) => {
     // const newTags = selectedTags;
     const newTags = new Set(tags)
-    console.log(tags+"-----"+selectedTags+"-----"+newTags)
-    tags.map((e)=>{
-        newTags.add(e)
+    console.log(tags + "-----" + selectedTags + "-----" + newTags)
+    tags.map((e) => {
+      newTags.add(e)
     })
     setTagList([...newTags]);
     setSelectedTags([...newTags]);
@@ -125,8 +126,8 @@ function EditProperty() {
       console.log(result)
       // const result = await EditSpecficPropertyId(id, Title, Address, City, State, District, Pincode, Type, Price, Area, Bedroom, Bathroom, Descpt)
       if (result.message === 'Update Done') {
-        console.log("Image::"+Image)
-        const ImgResult=await addPropertyImages(Image,propid)
+        console.log("Image::" + Image)
+        const ImgResult = await addPropertyImages(Image, propid)
         console.log(ImgResult)
         toast.success(result.message + " Successfully")
         navigate("/dashboard")
@@ -136,6 +137,32 @@ function EditProperty() {
       }
     }
   }
+  const fetchImage = async () => {
+    // const id = 9;
+    const result = await getPropertyImages(propid); // Backend Integration
+    if (result.status == 200) {
+      const data = result.data;
+      return data;
+    } else {
+      toast.warning('No Such Property Images Found');
+      return null;
+    }
+  };
+
+  const deleteImage = async (id) => {
+    const result = await DeletePropertyImage(id); // Backend Integration
+    console.log("Image Delete Response")
+    console.log(result)
+    if (result.status == 200) {
+      images = await fetchImage()
+      setImages(images)
+      toast.success(result.data.message)
+    } else {
+      toast.warning(result.data.message);
+      return null;
+    }
+  };
+
   useEffect(() => {
     (async () => {
       const prop = await fetchData()
@@ -156,6 +183,10 @@ function EditProperty() {
       setBathroom(bathrooms);
       setDescpt(description);
       setTagList(tagsArray)
+      images = await fetchImage()
+      console.log("Fetched Images::")
+      console.log(images)
+      setImages(images)
     })();
   }, []);
   return (
@@ -273,6 +304,28 @@ function EditProperty() {
                   <div className="col me-3">
                     <div className="form-label">Property Images: </div>
                     <input className="form-control" type="file" name="Images" id="formFileMultiple" multiple />
+                  </div>
+                </div>
+                <div className="row">
+                  Already Added Images
+                  <div class="table-responsive">
+                    <table class="table table-bordered table-striped">
+                      <thead>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Delete</th>
+                      </thead>
+                      <tbody>
+                        {Images.map((image) => {
+                          return (
+                            <tr>
+                              <td>{image.id}</td>
+                              <td>{image.imageLink}</td>
+                              <td><button className="btn btn-danger" onClick={() => deleteImage(image.id)}> Delete Image</button></td>
+                            </tr>);
+                        })}
+                      </tbody>
+                    </table>
                   </div>
                 </div>
                 <div className="mb-3">

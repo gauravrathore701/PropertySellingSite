@@ -59,7 +59,7 @@ public class WishlistController {
 	
 	@PostMapping("/add/wishlist")
 	@Operation(summary = "To Add Wishlst Item")
-	public ResponseEntity<?> AddUserWishlist(WishListDTORequest request){
+	public ResponseEntity<?> AddUserWishlist(@RequestBody WishListDTORequest request){
 		return ResponseEntity.ok(new ApiResponse(wishlistService.AddUserWishlist(request)));
 	}
 	

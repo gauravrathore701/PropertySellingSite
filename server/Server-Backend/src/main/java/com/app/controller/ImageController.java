@@ -2,6 +2,8 @@ package com.app.controller;
 
 import jakarta.validation.Valid;
 
+import java.io.IOException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -49,7 +51,7 @@ public class ImageController {
 	}
 	@GetMapping("/list/{propertyId}")
 	@Operation(summary = "To Get Images by Property")
-	public ResponseEntity<?> getSpecificProperty(@PathVariable Long propertyId){
+	public ResponseEntity<?> getSpecificProperty(@PathVariable Long propertyId) throws IOException{
 		return ResponseEntity.ok(imageService.SeachImagesByProperty(propertyId));
 	}
 	@DeleteMapping("/{imageId}")

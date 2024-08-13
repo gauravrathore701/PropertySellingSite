@@ -2,7 +2,11 @@ package com.app.service;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
 import jakarta.transaction.Transactional;
@@ -66,7 +70,8 @@ public class ImageServiceImpl implements ImageService {
 			Images img=mapper.map(image, Images.class);
 			img.setName(image.getOriginalFilename());
 			img.setProperty(p);
-			String link ="src/main/resources/static/"+image.getOriginalFilename();
+			String folderPath = "src/main/resources/static/"+propertyId+"/";
+			String link =folderPath+image.getOriginalFilename();
 			try {
 
 				FileUtils.writeByteArrayToFile(new File(link), image.getBytes());
@@ -76,10 +81,22 @@ public class ImageServiceImpl implements ImageService {
 			}
 			img.setImageLink(image.getOriginalFilename());
 			imageDao.save(img);
+			refreshDirectory(folderPath);
+			
 		}
 		return "Image Added Successfully";
 	}
 
+	private void refreshDirectory(String directoryPath) {
+	    try {
+	        Path dir = Paths.get(directoryPath);
+	        Files.newDirectoryStream(dir);
+	        System.out.println("Refresh Done");
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	    }
+	}
+	
 	@Override
 	public String DeletePropertyImages(Long imageId) {
 		Images img=imageDao.findById(imageId).orElseThrow((()->new ResourceNotFoundException("Invalid Image Id Given")));
@@ -88,12 +105,17 @@ public class ImageServiceImpl implements ImageService {
 	}
 
 	@Override
-	public List<ImageDTOResponse> SeachImagesByProperty(Long propertyId) {
+	public List<ImageDTOResponse> SeachImagesByProperty(Long propertyId) throws IOException {
 		Property p= propertyDao.findById(propertyId).orElseThrow((()->new ResourceNotFoundException("Invalid Property Id Given")));
 		List<Images> imgList=imageDao.findByProperty(p);
 		List<ImageDTOResponse> imgDList=new ArrayList<ImageDTOResponse>();
+		String folderPath = "src/main/resources/static/"+propertyId+"/";
 		for (Images image : imgList) {
 			ImageDTOResponse img=mapper.map(image, ImageDTOResponse.class);
+			File imgFile = FileUtils.getFile(folderPath+img.getImageLink());
+			byte[] imgFileBytearr = FileUtils.readFileToByteArray(imgFile);
+			String encoded = Base64.getEncoder().encodeToString(imgFileBytearr);
+			img.setImageData(encoded);
 			imgDList.add(img);
 		}
 		return imgDList;

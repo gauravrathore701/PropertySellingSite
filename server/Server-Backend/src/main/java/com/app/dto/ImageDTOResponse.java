@@ -14,4 +14,5 @@ import lombok.ToString;
 public class ImageDTOResponse {
 	private Long id;
 	private String imageLink;
+	private String imageData;
 }

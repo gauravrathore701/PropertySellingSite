@@ -79,7 +79,7 @@ function Homepage() {
           {Properities.map((property) => {
             return (
               <div className="col m-4">
-                <ProductCard page={{ name: "wishlist" }} id={property.id} title={property.title} description={property.description} price={property.price} owner={property.owner} />
+                <ProductCard page={{ name: "homepage" }} id={property.id} title={property.title} description={property.description} price={property.price} owner={property.owner} />
 
               </div>
             );

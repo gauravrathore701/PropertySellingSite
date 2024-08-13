@@ -1,5 +1,6 @@
 package com.app.service;
 
+import java.io.IOException;
 import java.util.List;
 
 import jakarta.validation.Valid;
@@ -18,5 +19,5 @@ public interface ImageService {
 
 	String DeletePropertyImages(Long imageId);
 	
-	List<ImageDTOResponse> SeachImagesByProperty(Long propertyId);	
+	List<ImageDTOResponse> SeachImagesByProperty(Long propertyId) throws IOException;	
 }

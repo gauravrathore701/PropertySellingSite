@@ -48,7 +48,7 @@ function LoginPage() {
         toast.success("Login successful!");
         navigate("/dashboard");
       } else {
-        toast.warning('No Such Property Found');
+        toast.warning(result.data.message);
       }
     }
   };

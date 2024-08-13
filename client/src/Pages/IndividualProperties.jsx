@@ -9,12 +9,13 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { toast } from "react-toastify";
-import { getPropertyImages, GetSpecficPropertyId } from "../services/property";
+import { addPropertyWishlist, getPropertyImages, GetSpecficPropertyId } from "../services/property";
 import config from "../config";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 
 function IndividualProperties() {
+  const navigate=useNavigate();
   const { propid } = useParams();
   const [Title, setTitle] = useState("Testing Title");
   const [Descpt, setDescpt] = useState(
@@ -77,6 +78,20 @@ function IndividualProperties() {
     }
   };
 
+  const WishlistAdd = async (propId) => {
+    // const id = 9;
+    const userId=sessionStorage.getItem('userid')
+    const result = await addPropertyWishlist(userId,propId); // Backend Integration
+    console.log(result)
+    if (result.status == 200) {
+      toast.success("Property Added to Wishlist")
+      navigate("/wishlist")
+    } 
+    else {
+      toast.warning('Faced Some Issue:'+result.data.message);
+    }
+  };
+
   useEffect(() => {
     (async () => {
       const prop = await fetchData()
@@ -120,20 +135,10 @@ function IndividualProperties() {
             {Images.map((image) => {
              return(<div>
                 <center>
-                  <img src={`${config.url}` + `/${image.imageLink}`} alt={"Test Image"} className="CarouselImage" />
+                  <img src={"data:image/png;base64,"+`${image.imageData}`} alt={"Test Image"} className="CarouselImage" />
                 </center>
               </div>)
             })}
-            {/* <div>
-              <center>
-                <img src={"http://localhost:8080/Test_Image_2.jpg"} alt={"Test Image"} className="CarouselImage" />
-              </center>
-            </div>
-            <div>
-              <center>
-                <img src={"http://localhost:8080/Test_Image_1.jpg"} alt={"Test Image"} className="CarouselImage" />
-              </center>
-            </div> */}
           </Slider>
           <br />
         </div>
@@ -199,7 +204,7 @@ function IndividualProperties() {
               <hr />
               <br />
               <p className="fs-5"><b>Price:&#8377;</b>{Price}&nbsp;&nbsp;&nbsp;&nbsp; <button className="btn btn-success ms-2"><a href="/checkout">Buy Now</a></button></p>
-              <button className="btn btn-warning me-3"><a href="/wishlist">Add to Wishlist</a></button>
+              <button className="btn btn-warning me-3" onClick={()=>{WishlistAdd(propid)}}>Add to Wishlist</button>
             </div>
           </div>
         </div>

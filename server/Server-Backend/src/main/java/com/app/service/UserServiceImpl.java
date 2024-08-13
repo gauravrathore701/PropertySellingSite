@@ -15,7 +15,7 @@ import com.app.dto.UserDTO;
 import com.app.dto.UserDTOResponse;
 import com.app.dto.UserPasswordChangeDTO;
 import com.app.dto.UserUpdateDTO;
-import com.app.entities.Address;
+import com.app.entities.UserRole;
 import com.app.entities.Users;
 
 @Service
@@ -31,7 +31,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public String addNewUser(UserDTO request) {
 		Users u= mapper.map(request, Users.class);
-		u.setAdmin(false);
+		u.setRole(UserRole.ROLE_USER);
 		u.setDob(request.getDob());
 		userDao.save(u);
 		return "User Added";
@@ -56,7 +56,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public String addNewAdmin(UserDTO request) {
 		Users u= mapper.map(request, Users.class);
-		u.setAdmin(true);
+		u.setRole(UserRole.ROLE_ADMIN);
 		userDao.save(u);
 		return "Admin Added";
 	}
@@ -65,7 +65,8 @@ public class UserServiceImpl implements UserService {
 		Users u=userDao.findByEmail(request.getEmail());
 		if(u==null)
 			throw new ResourceNotFoundException("Invalid User Credentials");
-		u.setAddress(mapper.map(request.getAddress(),Address.class));
+		u.setCity(request.getCity());
+		u.setState(request.getState());
 		u.setFname(request.getFname());
 		u.setLname(request.getLname());
 		u.setPhone(request.getPhone());

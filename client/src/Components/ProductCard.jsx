@@ -2,7 +2,8 @@ import { Link } from "react-router-dom";
 
 function ProductCard({ page = { name: "default" },id,title,description,price,owner}) {
   function addToCartBtn() {
-    if (page.name == "wishlist") {
+    
+    if (page.name == "homepage") {
       return (
         <div>
           <Link to={`/individual-property/${id}`} class="btn btn-success card-link mb-2">
@@ -26,8 +27,17 @@ function ProductCard({ page = { name: "default" },id,title,description,price,own
         </div>
       );
     }
-    if (page.name == "Checkout-Prop") {
-      return <div></div>;
+    if (page.name == "wishlist") {
+      return (
+        <div>
+          <Link to={`/individual-property/${id}`} class="btn btn-success card-link mb-2">
+          Show Property
+          </Link>
+          <a href="/checkout" class="btn btn-secondary card-link mb-2">
+            Buy Property
+          </a>
+        </div>
+      );
     }
   }
 

@@ -5,6 +5,8 @@ import java.time.LocalDate;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Lob;
 import jakarta.persistence.OneToOne;
@@ -37,11 +39,14 @@ public class Users extends BaseEntity {
 	@Column(length = 20)
 	private String phone;
 	
-	@OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "Address")
-	private Address address;
+	@Column(length = 20)
+	private String city;
 	
-	private boolean isAdmin;
+	@Column(length = 20)
+	private String state;
+	
+	@Enumerated(EnumType.STRING)
+	private UserRole role;
 	
 	@Lob
 	@Column(columnDefinition = "LONGBLOB")
