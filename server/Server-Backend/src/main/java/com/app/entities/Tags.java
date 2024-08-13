@@ -9,17 +9,21 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 
 @Entity
 @Getter
 @Setter
+@EqualsAndHashCode(callSuper = false,of = "tagName")
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "tags")
+@ToString()
 public class Tags extends BaseEntity{
 
 	@Column(length = 100,nullable = false)

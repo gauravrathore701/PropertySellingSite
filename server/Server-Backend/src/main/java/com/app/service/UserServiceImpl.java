@@ -8,8 +8,14 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.app.custom_exceptions.ResourceNotFoundException;
 import com.app.dao.UserDao;
-import com.app.dto.UserDTORequest;
+import com.app.dto.LoginDTO;
+import com.app.dto.UserDTO;
+import com.app.dto.UserDTOResponse;
+import com.app.dto.UserPasswordChangeDTO;
+import com.app.dto.UserUpdateDTO;
+import com.app.entities.UserRole;
 import com.app.entities.Users;
 
 @Service
@@ -23,14 +29,59 @@ public class UserServiceImpl implements UserService {
 	private ModelMapper mapper;
 
 	@Override
-	public String addNewUser(UserDTORequest request) {
+	public String addNewUser(UserDTO request) {
 		Users u= mapper.map(request, Users.class);
-		u.setAdmin(false);
+		u.setRole(UserRole.ROLE_USER);
+		u.setDob(request.getDob());
 		userDao.save(u);
 		return "User Added";
 	}
 	@Override
+	public UserDTO getSpecific(Long id) {
+		Users u=userDao.findById(id).orElseThrow(()->new ResourceNotFoundException("Invalid User"));
+		return mapper.map(u, UserDTO.class);
+	}
+	
+	@Override
 	public List<Users> getAll() {
 		return userDao.findAll();
+	}
+	@Override
+	public UserDTOResponse getUserByEmail(LoginDTO request) {
+		Users u=userDao.findByEmail(request.getEmail());
+		if(u==null || !u.getPassword().equals(request.getPassword()))
+			throw new ResourceNotFoundException("Invalid User Credentials");
+		return mapper.map(u, UserDTOResponse.class);
+	}
+	@Override
+	public String addNewAdmin(UserDTO request) {
+		Users u= mapper.map(request, Users.class);
+		u.setRole(UserRole.ROLE_ADMIN);
+		userDao.save(u);
+		return "Admin Added";
+	}
+	@Override
+	public String UpdateProfile(UserUpdateDTO request) {
+		Users u=userDao.findByEmail(request.getEmail());
+		if(u==null)
+			throw new ResourceNotFoundException("Invalid User Credentials");
+		u.setCity(request.getCity());
+		u.setState(request.getState());
+		u.setFname(request.getFname());
+		u.setLname(request.getLname());
+		u.setPhone(request.getPhone());
+		u.setUsername(request.getUsername());
+		u.setDob(request.getDob());
+		userDao.save(u);
+		return "Profile Updated";
+	}
+	@Override
+	public String UpdatePassword(UserPasswordChangeDTO request) {
+		Users u=userDao.findByEmail(request.getEmail());
+		if(u==null ||!u.getPassword().equals(request.getPassword()))
+			throw new ResourceNotFoundException("Invalid User Credentials");
+		u.setPassword(request.getNewPassword());
+		userDao.save(u);
+		return "Password Updated";
 	}
 }

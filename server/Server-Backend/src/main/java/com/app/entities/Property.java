@@ -5,11 +5,13 @@ import java.util.Set;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Getter
 @Setter
 @Table(name = "property")
+@ToString(exclude = {"address","tags"})
 public class Property extends BaseEntity{
 	
 	@Column(length = 255,nullable = false)

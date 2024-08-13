@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Footer from "../Components/Footer";
 import Header from "../Components/Header";
+import { userLogin } from "../services/user";
 
 function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
@@ -25,28 +26,30 @@ function LoginPage() {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
     // Validate email and password
     const isValidEmail = validateEmail(data.email);
     const isValidPassword = validatePassword(data.password);
-
     if (isValidEmail && isValidPassword) {
       // Proceed with login logic
       console.log("Form is valid, perform login");
-
-      // Example: Call your login function here
-
-      // Clear form or perform other actions after successful login
-      setData({
-        email: "",
-        password: "",
-      });
-
-      // Show success toast
-      toast.success("Login successful!");
-      navigate("/dashboard");
+      const result = await userLogin(data);
+      console.log(result)
+      if (result.status == 200) {
+        const data = result.data;
+        console.log("Validated Creds::")
+        console.log(data)
+        sessionStorage.setItem("userid",data.id)
+        sessionStorage.setItem("username",data.username)
+        sessionStorage.setItem("userFullName",data.fname+" "+data.lname)
+        sessionStorage.setItem("userEmail",data.email)
+        sessionStorage.setItem("userPhone",data.phone)
+        toast.success("Login successful!");
+        navigate("/dashboard");
+      } else {
+        toast.warning(result.data.message);
+      }
     }
   };
 
@@ -58,7 +61,6 @@ function LoginPage() {
     }
     return true;
   };
-
   const validatePassword = (password) => {
     if (!password) {
       toast.error("Please enter a password");

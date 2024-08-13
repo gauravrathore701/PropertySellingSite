@@ -1,11 +1,11 @@
 // import index from "../index";
 
-import Footer from "../Components/Footer";
-import Header from "../Components/Header";
-
+import Footer from "../Components/Footer"
+import Header from "../Components/Header"
+import { Link, useNavigate } from 'react-router-dom'
 import { useState } from "react"
-import { Link } from "react-router-dom"
 import { toast } from "react-toastify"
+import { addUser } from "../services/user"
 
 function RegisterPage() {
   const [FirstName, setFirstName] = useState("")
@@ -13,10 +13,18 @@ function RegisterPage() {
   const [Username, setUsername] = useState("")
   const [PhoneNumber, setPhoneNumber] = useState("")
   const [Email, setEmail] = useState("")
+  const [Dob, setDob] = useState("")
   const [Password, setPassword] = useState("")
   const [ConfirmPassword, setConfirmPassword] = useState("")
-  const [Buyer, setBuyer] = useState(false)
-  const [Seller, setSeller] = useState(false)
+  const [City, setCity] = useState("")
+  const [State, setState] = useState("")
+
+
+  const navigate = useNavigate()
+
+  const onCancel = () => {
+    navigate('/login')
+  }
 
   const RegisterUser = async () => {
     if (FirstName.length === 0) {
@@ -31,11 +39,14 @@ function RegisterPage() {
       toast.warning("Please Enter Valid Phone Number");
     } else if (Email.length === 0) {
       toast.warning("Please Enter Email");
+    } else if (City.length === 0) {
+      toast.warning("Please Enter City name")
+    } else if (State.length === 0) {
+      toast.warning("Please Enter State Name")
+    } else if (Dob.length === 0) {
+      toast.warning("Please Enter Date of Birth")
     } else {
-      if (Buyer === false && Seller === false) {
-        toast.warning("Please Select User Type");
-      }
-      else if (!(Email.includes('@') && Email.endsWith('.com'))) {
+      if (!(Email.includes('@') && Email.endsWith('.com'))) {
         toast.warning("Please Enter Valid Email Address");
       } else if (Password.length === 0) {
         toast.warning("Please Enter Password");
@@ -45,18 +56,31 @@ function RegisterPage() {
         toast.warning("Password and Confirm Password are not Matching");
       }
       else {
-        const Bval = Buyer ? 1 : 0
-        const Sval = Seller ? 1 : 0
-        toast.success(FirstName)
-        toast.success(LastName)
-        toast.success(Username)
-        toast.success(PhoneNumber)
-        toast.success(Email)
-        toast.success(Password)
-        toast.success(ConfirmPassword)
-        toast.success("Buyer:" + Bval)
-        toast.success("Seller:" + Sval)
-      }
+          const body = {
+            fname: FirstName,
+            lname: LastName,
+            email: Email,
+            password: Password,
+            phone: PhoneNumber,
+            username: Username,
+            city: City,
+            state: State,
+            dob: Dob
+          }
+          // Make the API call and receive the result
+          const response = await addUser(body);
+
+          // Debugging: Log the entire response
+          console.log('API Response:', response);
+
+          // Check for HTTP status code 400 (Bad Request)
+          if (response.status === 200) {
+            toast.success('Successfully registered a user');
+            navigate('/login');
+          } else {
+            toast.error("Failed to register the user with Error :" + response.data.message);
+          }
+        } 
     }
   }
   return (
@@ -105,6 +129,24 @@ function RegisterPage() {
               <div className="row">
                 <div className="col">
                   <div className="mb-3">
+                    <label htmlFor="">City</label>
+                    <input type="text" className='form-control' onChange={e => setCity(e.target.value)} />
+                  </div>
+                </div>
+              </div>
+
+              <div className="row">
+                <div className="col">
+                  <div className="mb-3">
+                    <label htmlFor="">State</label>
+                    <input type="text" className='form-control' onChange={e => setState(e.target.value)} />
+                  </div>
+                </div>
+              </div>
+
+              <div className="row">
+                <div className="col">
+                  <div className="mb-3">
                     <label htmlFor="">Phone Number</label>
                     <input type="number" className='form-control' onChange={e => setPhoneNumber(e.target.value)} />
                   </div>
@@ -116,6 +158,15 @@ function RegisterPage() {
                   <div className="mb-3">
                     <label htmlFor="">Email</label>
                     <input type="email" className='form-control' onChange={e => setEmail(e.target.value)} />
+                  </div>
+                </div>
+              </div>
+
+              <div className="row">
+                <div className="col">
+                  <div className="mb-3">
+                    <label htmlFor="">DOB</label>
+                    <input type="date" className='form-control' onChange={e => setDob(e.target.value)} />
                   </div>
                 </div>
               </div>
@@ -138,7 +189,7 @@ function RegisterPage() {
                 </div>
               </div>
 
-              <div className="row">
+              {/* <div className="row">
                 <div className="col">
                   <div className="mb-3">
                     <label htmlFor="">User Type: </label>
@@ -150,7 +201,7 @@ function RegisterPage() {
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> */}
 
               <div className="row">
                 <div className="col">
@@ -158,7 +209,7 @@ function RegisterPage() {
                     <u><Link to='/login'>Login</Link></u>
                   </div>
                   <button className="btn btn-success ms-2 mb-3" onClick={RegisterUser}>Register</button>
-                  <button className="btn btn-danger mb-3 ms-4">Cancel</button>
+                  <button className="btn btn-danger mb-3 ms-4" onClick={onCancel}>Cancel</button>
                 </div>
               </div>
             </div>

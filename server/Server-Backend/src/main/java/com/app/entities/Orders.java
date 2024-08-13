@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 
 @Entity
@@ -14,15 +15,16 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "orders")
+@ToString(exclude = {"property","buyer"})
 public class Orders extends BaseEntity{
 
 	@OneToOne
 	private Property property;
 	
-	@OneToOne
-	private Users user;
+	@ManyToOne
+	private Users buyer;
 	
-	private boolean orderStatus;
+	private boolean orderComplete;
 	
 	private float amount;
 

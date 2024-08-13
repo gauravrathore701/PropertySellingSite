@@ -2,6 +2,8 @@ package com.app.controller;
 
 import jakarta.validation.Valid;
 
+import java.io.IOException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -17,6 +19,7 @@ import com.app.service.ImageService;
 import io.swagger.v3.oas.annotations.Operation;
 import com.app.dto.ApiResponse;
 import com.app.dto.ImageDTORequest;
+import com.app.dto.UserImageDTO;
 
 @RestController
 @Validated
@@ -26,15 +29,20 @@ public class ImageController {
 	@Autowired
 	private ImageService imageService;
 	@GetMapping("/{imageId}")
-	@Operation(summary = "To Specific Image")
+	@Operation(summary = "To get Specific Image")
 	public ResponseEntity<?> getSpecific(@PathVariable Long imageId ){
 		return ResponseEntity.ok(imageService.getImage(imageId));
 	}
 	
 	@PostMapping("/add/{propertyId}")
 	@Operation(summary = "To Add new Image per Property")
-	public ResponseEntity<?> addNew(@ModelAttribute @Valid ImageDTORequest request ,@PathVariable Long propertyId){
-		return ResponseEntity.ok(new ApiResponse(imageService.addNewImage(request, propertyId)));
+	public ResponseEntity<?> addNewImageProperty(@ModelAttribute @Valid ImageDTORequest request ,@PathVariable Long propertyId){
+		return ResponseEntity.ok(new ApiResponse(imageService.addNewImageProperty(request, propertyId)));
+	}
+	@PostMapping("/add/user/{userId}")
+	@Operation(summary = "To Add new Image per User")
+	public ResponseEntity<?> addImageUser(@ModelAttribute @Valid ImageDTORequest request ,@PathVariable Long userId){
+		return ResponseEntity.ok(new ApiResponse(imageService.addNewImageUser(request, userId)));
 	}
 	@GetMapping("/list")
 	@Operation(summary = "To get All Images")
@@ -42,8 +50,8 @@ public class ImageController {
 		return ResponseEntity.ok(imageService.getAll());
 	}
 	@GetMapping("/list/{propertyId}")
-	@Operation(summary = "To Get Image by Property")
-	public ResponseEntity<?> getSpecificProperty(@PathVariable Long propertyId){
+	@Operation(summary = "To Get Images by Property")
+	public ResponseEntity<?> getSpecificProperty(@PathVariable Long propertyId) throws IOException{
 		return ResponseEntity.ok(imageService.SeachImagesByProperty(propertyId));
 	}
 	@DeleteMapping("/{imageId}")

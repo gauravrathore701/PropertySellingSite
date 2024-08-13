@@ -6,20 +6,24 @@ import jakarta.validation.Valid;
 
 import com.app.dto.PropertyRequest;
 import com.app.dto.PropertyResponse;
+import com.app.dto.PropertyResponsePaginated;
 
 public interface PropertyService {
-	List<PropertyResponse> getAll();
-
-	String addNewProperty(@Valid PropertyRequest request, Long Userid);
-
-	String UpdatePropertyDetails(PropertyRequest request, Long Propertyid);
 	
-	String SellingProperty(PropertyRequest request, Long Propertyid);
+	PropertyResponse getById(Long id);
+	
+	PropertyResponsePaginated getAll(int page,int size);
 
-	List<PropertyResponse> SeachProductByType(String category);
+	PropertyResponse addNewProperty(@Valid PropertyRequest request, Long Userid);
+
+	String updatePropertyDetails(PropertyRequest request, Long Propertyid);
 	
-	List<PropertyResponse> SeachProductByUser(Long Userid);
+	String sellingProperty(PropertyRequest request, Long Propertyid);
+
+	List<PropertyResponse> seachProductByType(String category);
 	
-	String DeleteProperty(Long id);
+	List<PropertyResponse> seachProductByUser(Long Userid);
+	
+	String deleteProperty(Long id);
 	
 }
